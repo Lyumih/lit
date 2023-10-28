@@ -2919,9 +2919,188 @@ declare namespace $ {
     }
 }
 
+declare namespace $ {
+    type $mol_data_value<Input = any, Output = any> = (val: Input) => Output;
+}
+
+declare namespace $ {
+    type $mol_type_partial_undefined<Val> = $mol_type_merge<$mol_type_override<Partial<Val>, Pick<Val, {
+        [Field in keyof Val]: undefined extends Val[Field] ? never : Field;
+    }[keyof Val]>>>;
+}
+
+declare namespace $ {
+    function $mol_data_setup<Value extends $mol_data_value, Config = never>(value: Value, config: Config): Value & {
+        config: Config;
+        Value: ReturnType<Value>;
+    };
+}
+
+declare namespace $ {
+    function $mol_data_record<Sub extends Record<string, $mol_data_value>>(sub: Sub): ((val: $mol_type_merge<$mol_type_override<Partial<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }>, Pick<{ [key in keyof Sub]: Parameters<Sub[key]>[0]; }, { [Field in keyof { [key in keyof Sub]: Parameters<Sub[key]>[0]; }]: undefined extends { [key in keyof Sub]: Parameters<Sub[key]>[0]; }[Field] ? never : Field; }[keyof Sub]>>>) => Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }>, Pick<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }, { [Field_1 in keyof { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }]: undefined extends { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }[Field_1] ? never : Field_1; }[keyof Sub]>>>>) & {
+        config: Sub;
+        Value: Readonly<$mol_type_merge<$mol_type_override<Partial<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }>, Pick<{ [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }, { [Field_1 in keyof { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }]: undefined extends { [key_1 in keyof Sub]: ReturnType<Sub[key_1]>; }[Field_1] ? never : Field_1; }[keyof Sub]>>>>;
+    };
+}
+
+declare namespace $ {
+    function $mol_diff_path<Item>(...paths: Item[][]): {
+        prefix: Item[];
+        suffix: Item[][];
+    };
+}
+
+declare namespace $ {
+    class $mol_error_mix extends Error {
+        errors: Error[];
+        constructor(message: string, ...errors: Error[]);
+        toJSON(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_data_error extends $mol_error_mix {
+    }
+}
+
+declare namespace $ {
+    let $mol_data_string: (val: string) => string;
+}
+
+declare namespace $ {
+    function $mol_data_array<Sub extends $mol_data_value>(sub: Sub): ((val: readonly Parameters<Sub>[0][]) => readonly ReturnType<Sub>[]) & {
+        config: Sub;
+        Value: readonly ReturnType<Sub>[];
+    };
+}
+
+declare namespace $ {
+    const $lit_app_skill_Book: ((val: {
+        name: string;
+        id: string;
+        author: string;
+        author_link: string;
+        book: string;
+        book_link: string;
+        chapter: string;
+        chapter_link: string;
+        description: string;
+    }) => Readonly<{
+        name: string;
+        id: string;
+        author: string;
+        author_link: string;
+        book: string;
+        book_link: string;
+        chapter: string;
+        chapter_link: string;
+        description: string;
+    }>) & {
+        config: {
+            id: (val: string) => string;
+            author: (val: string) => string;
+            author_link: (val: string) => string;
+            book: (val: string) => string;
+            book_link: (val: string) => string;
+            chapter: (val: string) => string;
+            chapter_link: (val: string) => string;
+            name: (val: string) => string;
+            description: (val: string) => string;
+        };
+        Value: Readonly<{
+            name: string;
+            id: string;
+            author: string;
+            author_link: string;
+            book: string;
+            book_link: string;
+            chapter: string;
+            chapter_link: string;
+            description: string;
+        }>;
+    };
+    const $lit_app_skill_Books: ((val: readonly {
+        name: string;
+        id: string;
+        author: string;
+        author_link: string;
+        book: string;
+        book_link: string;
+        chapter: string;
+        chapter_link: string;
+        description: string;
+    }[]) => readonly Readonly<{
+        name: string;
+        id: string;
+        author: string;
+        author_link: string;
+        book: string;
+        book_link: string;
+        chapter: string;
+        chapter_link: string;
+        description: string;
+    }>[]) & {
+        config: ((val: {
+            name: string;
+            id: string;
+            author: string;
+            author_link: string;
+            book: string;
+            book_link: string;
+            chapter: string;
+            chapter_link: string;
+            description: string;
+        }) => Readonly<{
+            name: string;
+            id: string;
+            author: string;
+            author_link: string;
+            book: string;
+            book_link: string;
+            chapter: string;
+            chapter_link: string;
+            description: string;
+        }>) & {
+            config: {
+                id: (val: string) => string;
+                author: (val: string) => string;
+                author_link: (val: string) => string;
+                book: (val: string) => string;
+                book_link: (val: string) => string;
+                chapter: (val: string) => string;
+                chapter_link: (val: string) => string;
+                name: (val: string) => string;
+                description: (val: string) => string;
+            };
+            Value: Readonly<{
+                name: string;
+                id: string;
+                author: string;
+                author_link: string;
+                book: string;
+                book_link: string;
+                chapter: string;
+                chapter_link: string;
+                description: string;
+            }>;
+        };
+        Value: readonly Readonly<{
+            name: string;
+            id: string;
+            author: string;
+            author_link: string;
+            book: string;
+            book_link: string;
+            chapter: string;
+            chapter_link: string;
+            description: string;
+        }>[];
+    };
+}
 declare namespace $.$$ {
     class $lit_app_skill extends $.$lit_app_skill {
-        skill_data(): {
+        skill_data(): readonly Readonly<{
+            name: string;
             id: string;
             author: string;
             author_link: string;
@@ -2929,11 +3108,11 @@ declare namespace $.$$ {
             book_link: string;
             chapter: string;
             chapter_link: string;
-            name: string;
             description: string;
-        }[];
+        }>[];
         skill_list(): readonly any[];
-        get_skill(id: string): {
+        get_skill(id: string): Readonly<{
+            name: string;
             id: string;
             author: string;
             author_link: string;
@@ -2941,9 +3120,8 @@ declare namespace $.$$ {
             book_link: string;
             chapter: string;
             chapter_link: string;
-            name: string;
             description: string;
-        } | undefined;
+        }> | undefined;
         skill_name(id: any): string;
         skill_desc(id: any): string;
         skill_author(id: any): string;

@@ -9469,13 +9469,165 @@ var $;
 //lit/app/skill/-view.tree/skill.view.tree.ts
 ;
 "use strict";
+//mol/data/value/value.ts
+;
+"use strict";
+//mol/type/partial/undefined/undefined.ts
+;
+"use strict";
 var $;
+(function ($) {
+    function $mol_data_setup(value, config) {
+        return Object.assign(value, {
+            config,
+            Value: null
+        });
+    }
+    $.$mol_data_setup = $mol_data_setup;
+})($ || ($ = {}));
+//mol/data/setup/setup.ts
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_data_record(sub) {
+        return $mol_data_setup((val) => {
+            let res = {};
+            for (const field in sub) {
+                try {
+                    res[field] =
+                        sub[field](val[field]);
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        return $mol_fail_hidden(error);
+                    error.message = `[${JSON.stringify(field)}] ${error.message}`;
+                    return $mol_fail(error);
+                }
+            }
+            return res;
+        }, sub);
+    }
+    $.$mol_data_record = $mol_data_record;
+})($ || ($ = {}));
+//mol/data/record/record.ts
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_diff_path(...paths) {
+        const limit = Math.min(...paths.map(path => path.length));
+        lookup: for (var i = 0; i < limit; ++i) {
+            const first = paths[0][i];
+            for (let j = 1; j < paths.length; ++j) {
+                if (paths[j][i] !== first)
+                    break lookup;
+            }
+        }
+        return {
+            prefix: paths[0].slice(0, i),
+            suffix: paths.map(path => path.slice(i)),
+        };
+    }
+    $.$mol_diff_path = $mol_diff_path;
+})($ || ($ = {}));
+//mol/diff/path/path.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_error_mix extends Error {
+        errors;
+        constructor(message, ...errors) {
+            super(message);
+            this.errors = errors;
+            if (errors.length) {
+                const stacks = [...errors.map(error => error.stack), this.stack];
+                const diff = $mol_diff_path(...stacks.map(stack => {
+                    if (!stack)
+                        return [];
+                    return stack.split('\n').reverse();
+                }));
+                const head = diff.prefix.reverse().join('\n');
+                const tails = diff.suffix.map(path => path.reverse().map(line => line.replace(/^(?!\s+at)/, '\tat (.) ')).join('\n')).join('\n\tat (.) -----\n');
+                this.stack = `Error: ${this.constructor.name}\n\tat (.) /"""\\\n${tails}\n\tat (.) \\___/\n${head}`;
+                this.message += errors.map(error => '\n' + error.message).join('');
+            }
+        }
+        toJSON() {
+            return this.message;
+        }
+    }
+    $.$mol_error_mix = $mol_error_mix;
+})($ || ($ = {}));
+//mol/error/mix/mix.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_data_error extends $mol_error_mix {
+    }
+    $.$mol_data_error = $mol_data_error;
+})($ || ($ = {}));
+//mol/data/error/error.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_data_string = (val) => {
+        if (typeof val === 'string')
+            return val;
+        return $mol_fail(new $mol_data_error(`${val} is not a string`));
+    };
+})($ || ($ = {}));
+//mol/data/string/string.ts
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_data_array(sub) {
+        return $mol_data_setup((val) => {
+            if (!Array.isArray(val))
+                return $mol_fail(new $mol_data_error(`${val} is not an array`));
+            return val.map((item, index) => {
+                try {
+                    return sub(item);
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        return $mol_fail_hidden(error);
+                    error.message = `[${index}] ${error.message}`;
+                    return $mol_fail(error);
+                }
+            });
+        }, sub);
+    }
+    $.$mol_data_array = $mol_data_array;
+})($ || ($ = {}));
+//mol/data/array/array.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $.$lit_app_skill_Book = $mol_data_record({
+        id: $mol_data_string,
+        author: $mol_data_string,
+        author_link: $mol_data_string,
+        book: $mol_data_string,
+        book_link: $mol_data_string,
+        chapter: $mol_data_string,
+        chapter_link: $mol_data_string,
+        name: $mol_data_string,
+        description: $mol_data_string,
+    });
+    $.$lit_app_skill_Books = $mol_data_array($.$lit_app_skill_Book);
+})($ || ($ = {}));
 (function ($) {
     var $$;
     (function ($$) {
         class $lit_app_skill extends $.$lit_app_skill {
             skill_data() {
-                return [
+                return this.$.$lit_app_skill_Books([
                     {
                         id: '1',
                         author: 'Пётр Жгулёв',
@@ -9511,7 +9663,7 @@ var $;
 Насыщение:
 0/10 ОС`,
                     },
-                ];
+                ]);
             }
             skill_list() {
                 const filtered_skills = this.skill_data().filter(skill => this.search() ? skill.description.toLowerCase().includes(this.search().toLowerCase()) : true);

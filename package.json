@@ -201,7 +201,19 @@
     "$mol_promise_promise",
     "$mol_embed_youtube",
     "$mol_icon_youtube",
-    "$mol_frame"
+    "$mol_frame",
+    "$mol_data_record",
+    "$mol_data",
+    "$mol_data_value",
+    "$mol_type_partial_undefined",
+    "$mol_type_partial",
+    "$mol_data_setup",
+    "$mol_data_string",
+    "$mol_data_error",
+    "$mol_error_mix",
+    "$mol_diff_path",
+    "$mol_diff",
+    "$mol_data_array"
   ],
   "dependencies": {
     "jsdom": "*",
