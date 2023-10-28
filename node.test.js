@@ -10015,12 +10015,12 @@ var $;
                         chapter_link: 'https://author.today/reader/17501/622184',
                         name: 'Владение копьем',
                         description: `Владение копьем
-					Ранг: F.
-					Уровень: 1/5.
-					Тип: навык.
-					Особенности:
-					— Обучает пользователя владению копьем.
-					— Минимально адаптирует организм под выбранный тип оружия.`,
+Ранг: F.
+Уровень: 1/5.
+Тип: навык.
+Особенности:
+— Обучает пользователя владению копьем.
+— Минимально адаптирует организм под выбранный тип оружия.`,
                     },
                     {
                         id: '2',
@@ -10030,13 +10030,14 @@ var $;
                         chapter: '2',
                         chapter_link: 'https://author.today/reader/17501/622184',
                         name: 'Стрельба из лука',
-                        description: `Стрельба из лукаРанг: F.
-					Тип: навык.
-					Уровень: 1/5.
-					Описание:
-					— Навык стрельбы из лука, взятый у одного из гоблинских племен.
-					Насыщение:
-					0/10 ОС`,
+                        description: `Стрельба из лука
+Ранг: F.
+Тип: навык.
+Уровень: 1/5.
+Описание:
+— Навык стрельбы из лука, взятый у одного из гоблинских племен.
+Насыщение:
+0/10 ОС`,
                     },
                 ];
             }
@@ -10047,7 +10048,7 @@ var $;
                 return this.skill_data().find(skill => skill.id === id);
             }
             skill_name(id) {
-                return this.get_skill(id)?.name || 'no name';
+                return "# " + this.get_skill(id)?.name || 'no name';
             }
             skill_desc(id) {
                 return this.get_skill(id)?.description || 'no description';
@@ -10057,6 +10058,13 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //lit/app/skill/skill.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("lit/app/skill/skill.view.css", "[lit_app_skill_skill] {\n\tborder: 2px solid grey;\n\tborder-radius: 2rem;\n\tpadding: 1rem;\n}\n\n[lit_app_skill_skill] + [lit_app_skill_skill] {\n\tmargin-top: 2rem;\n}\n");
+})($ || ($ = {}));
+//lit/app/skill/-css/skill.view.css.ts
 ;
 "use strict";
 var $;

@@ -2930,6 +2930,9 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+}
+
+declare namespace $ {
     class $lit_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
