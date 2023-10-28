@@ -9889,44 +9889,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $lit_app_skill extends $mol_page {
-        title() {
-            return "Умения";
-        }
-        body() {
-            return [
-                this.Skill_list()
-            ];
-        }
-        Skill() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => "# Навык: Владение копьем (глава 1)\nРанг: F.\nУровень: 1/5.\nТип: навык.\nОсобенности:\n— Обучает пользователя владению копьем.\n— Минимально адаптирует организм под выбранный тип оружия.";
-            return obj;
-        }
-        skill_list() {
-            return [
-                this.Skill()
-            ];
-        }
-        Skill_list() {
-            const obj = new this.$.$mol_list();
-            obj.rows = () => this.skill_list();
-            return obj;
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $lit_app_skill.prototype, "Skill", null);
-    __decorate([
-        $mol_mem
-    ], $lit_app_skill.prototype, "Skill_list", null);
-    $.$lit_app_skill = $lit_app_skill;
-})($ || ($ = {}));
-//lit/app/skill/-view.tree/skill.view.tree.ts
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_text_list extends $mol_text {
         auto_scroll() {
             return null;
@@ -9976,6 +9938,129 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $lit_app_skill extends $mol_page {
+        title() {
+            return "Умения";
+        }
+        body() {
+            return [
+                this.Skill_list()
+            ];
+        }
+        skill_name(id) {
+            return "";
+        }
+        Skill_name(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.skill_name(id);
+            return obj;
+        }
+        skill_desc(id) {
+            return "";
+        }
+        Skill_desc(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.skill_desc(id);
+            return obj;
+        }
+        Skill(id) {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Skill_name(id),
+                this.Skill_desc(id)
+            ];
+            return obj;
+        }
+        skill_list() {
+            return [
+                this.Skill("0")
+            ];
+        }
+        Skill_list() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.skill_list();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_skill.prototype, "Skill_name", null);
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_skill.prototype, "Skill_desc", null);
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_skill.prototype, "Skill", null);
+    __decorate([
+        $mol_mem
+    ], $lit_app_skill.prototype, "Skill_list", null);
+    $.$lit_app_skill = $lit_app_skill;
+})($ || ($ = {}));
+//lit/app/skill/-view.tree/skill.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $lit_app_skill extends $.$lit_app_skill {
+            skill_data() {
+                return [
+                    {
+                        id: '1',
+                        author: 'Пётр Жгулёв',
+                        book: 'Real-Rpg. Город гоблинов',
+                        book_link: 'https://author.today/work/17501',
+                        chapter: '1',
+                        chapter_link: 'https://author.today/reader/17501/622184',
+                        name: 'Владение копьем',
+                        description: `Владение копьем
+					Ранг: F.
+					Уровень: 1/5.
+					Тип: навык.
+					Особенности:
+					— Обучает пользователя владению копьем.
+					— Минимально адаптирует организм под выбранный тип оружия.`,
+                    },
+                    {
+                        id: '2',
+                        author: 'Пётр Жгулёв',
+                        book: 'Real-Rpg. Город гоблинов',
+                        book_link: 'https://author.today/work/17501',
+                        chapter: '2',
+                        chapter_link: 'https://author.today/reader/17501/622184',
+                        name: 'Стрельба из лука',
+                        description: `Стрельба из лукаРанг: F.
+					Тип: навык.
+					Уровень: 1/5.
+					Описание:
+					— Навык стрельбы из лука, взятый у одного из гоблинских племен.
+					Насыщение:
+					0/10 ОС`,
+                    },
+                ];
+            }
+            skill_list() {
+                return this.skill_data().map(skill => this.Skill(skill.id));
+            }
+            get_skill(id) {
+                return this.skill_data().find(skill => skill.id === id);
+            }
+            skill_name(id) {
+                return this.get_skill(id)?.name || 'no name';
+            }
+            skill_desc(id) {
+                return this.get_skill(id)?.description || 'no description';
+            }
+        }
+        $$.$lit_app_skill = $lit_app_skill;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//lit/app/skill/skill.view.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $lit_app extends $mol_book2_catalog {
         menu_title() {
             return "LitRPG База Данных";
@@ -9987,7 +10072,8 @@ var $;
             return {
                 book: this.Book(),
                 author: this.Author(),
-                skill: this.Skill()
+                skill: this.Skill(),
+                quest: this.Quest()
             };
         }
         Book() {
@@ -10002,6 +10088,10 @@ var $;
             const obj = new this.$.$lit_app_skill();
             return obj;
         }
+        Quest() {
+            const obj = new this.$.$mol_page();
+            return obj;
+        }
     }
     __decorate([
         $mol_mem
@@ -10012,6 +10102,9 @@ var $;
     __decorate([
         $mol_mem
     ], $lit_app.prototype, "Skill", null);
+    __decorate([
+        $mol_mem
+    ], $lit_app.prototype, "Quest", null);
     $.$lit_app = $lit_app;
 })($ || ($ = {}));
 //lit/app/-view.tree/app.view.tree.ts

@@ -2872,16 +2872,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $lit_app_skill extends $mol_page {
-        title(): string;
-        body(): readonly any[];
-        Skill(): $$.$mol_text;
-        skill_list(): readonly any[];
-        Skill_list(): $$.$mol_list;
-    }
-}
-
-declare namespace $ {
     class $mol_text_list extends $mol_text {
         auto_scroll(): any;
         attr(): Record<string, any>;
@@ -2898,13 +2888,56 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $lit_app_skill extends $mol_page {
+        title(): string;
+        body(): readonly any[];
+        skill_name(id: any): string;
+        Skill_name(id: any): $$.$mol_text;
+        skill_desc(id: any): string;
+        Skill_desc(id: any): $$.$mol_text;
+        Skill(id: any): $$.$mol_list;
+        skill_list(): readonly any[];
+        Skill_list(): $$.$mol_list;
+    }
+}
+
+declare namespace $.$$ {
+    class $lit_app_skill extends $.$lit_app_skill {
+        skill_data(): {
+            id: string;
+            author: string;
+            book: string;
+            book_link: string;
+            chapter: string;
+            chapter_link: string;
+            name: string;
+            description: string;
+        }[];
+        skill_list(): readonly any[];
+        get_skill(id: string): {
+            id: string;
+            author: string;
+            book: string;
+            book_link: string;
+            chapter: string;
+            chapter_link: string;
+            name: string;
+            description: string;
+        } | undefined;
+        skill_name(id: any): string;
+        skill_desc(id: any): string;
+    }
+}
+
+declare namespace $ {
     class $lit_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
         spreads(): Record<string, any>;
         Book(): $mol_page;
         Author(): $mol_page;
-        Skill(): $lit_app_skill;
+        Skill(): $$.$lit_app_skill;
+        Quest(): $mol_page;
     }
 }
 
