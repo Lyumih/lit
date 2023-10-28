@@ -10138,7 +10138,7 @@ var $;
                 return this.skill_data().find(skill => skill.id === id);
             }
             skill_name(id) {
-                return "# " + this.get_skill(id)?.name || 'no name';
+                return "## " + this.get_skill(id)?.name || 'no name';
             }
             skill_desc(id) {
                 return this.get_skill(id)?.description || 'no description';
