@@ -9331,6 +9331,30 @@ var $;
                 this.Skill_list()
             ];
         }
+        skill_author(id) {
+            return "";
+        }
+        skill_author_link(id) {
+            return "";
+        }
+        Skill_author(id) {
+            const obj = new this.$.$mol_link();
+            obj.title = () => this.skill_author(id);
+            obj.uri = () => this.skill_author_link(id);
+            return obj;
+        }
+        skill_book(id) {
+            return "";
+        }
+        skill_book_link(id) {
+            return "";
+        }
+        Skill_book(id) {
+            const obj = new this.$.$mol_link();
+            obj.title = () => this.skill_book(id);
+            obj.uri = () => this.skill_book_link(id);
+            return obj;
+        }
         skill_name(id) {
             return "";
         }
@@ -9350,6 +9374,8 @@ var $;
         Skill(id) {
             const obj = new this.$.$mol_list();
             obj.rows = () => [
+                this.Skill_author(id),
+                this.Skill_book(id),
                 this.Skill_name(id),
                 this.Skill_desc(id)
             ];
@@ -9366,6 +9392,12 @@ var $;
             return obj;
         }
     }
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_skill.prototype, "Skill_author", null);
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_skill.prototype, "Skill_book", null);
     __decorate([
         $mol_mem_key
     ], $lit_app_skill.prototype, "Skill_name", null);
@@ -9393,6 +9425,7 @@ var $;
                     {
                         id: '1',
                         author: 'Пётр Жгулёв',
+                        author_link: 'https://author.today/u/zhg2005/works',
                         book: 'Real-Rpg. Город гоблинов',
                         book_link: 'https://author.today/work/17501',
                         chapter: '1',
@@ -9409,10 +9442,11 @@ var $;
                     {
                         id: '2',
                         author: 'Пётр Жгулёв',
+                        author_link: 'https://author.today/u/zhg2005/works',
                         book: 'Real-Rpg. Город гоблинов',
                         book_link: 'https://author.today/work/17501',
                         chapter: '2',
-                        chapter_link: 'https://author.today/reader/17501/622184',
+                        chapter_link: 'https://author.today/reader/17501/622188',
                         name: 'Стрельба из лука',
                         description: `Стрельба из лука
 Ранг: F.
@@ -9436,6 +9470,18 @@ var $;
             }
             skill_desc(id) {
                 return this.get_skill(id)?.description || 'no description';
+            }
+            skill_author(id) {
+                return this.get_skill(id)?.author || 'no author';
+            }
+            skill_author_link(id) {
+                return this.get_skill(id)?.author_link || 'no author link';
+            }
+            skill_book(id) {
+                return `${this.get_skill(id)?.book}. Глава ${this.get_skill(id)?.chapter}` || 'no book';
+            }
+            skill_book_link(id) {
+                return this.get_skill(id)?.chapter_link || 'no book link';
             }
         }
         $$.$lit_app_skill = $lit_app_skill;

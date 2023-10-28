@@ -2891,6 +2891,12 @@ declare namespace $ {
     class $lit_app_skill extends $mol_page {
         title(): string;
         body(): readonly any[];
+        skill_author(id: any): string;
+        skill_author_link(id: any): string;
+        Skill_author(id: any): $$.$mol_link;
+        skill_book(id: any): string;
+        skill_book_link(id: any): string;
+        Skill_book(id: any): $$.$mol_link;
         skill_name(id: any): string;
         Skill_name(id: any): $$.$mol_text;
         skill_desc(id: any): string;
@@ -2906,6 +2912,7 @@ declare namespace $.$$ {
         skill_data(): {
             id: string;
             author: string;
+            author_link: string;
             book: string;
             book_link: string;
             chapter: string;
@@ -2917,6 +2924,7 @@ declare namespace $.$$ {
         get_skill(id: string): {
             id: string;
             author: string;
+            author_link: string;
             book: string;
             book_link: string;
             chapter: string;
@@ -2926,6 +2934,10 @@ declare namespace $.$$ {
         } | undefined;
         skill_name(id: any): string;
         skill_desc(id: any): string;
+        skill_author(id: any): string;
+        skill_author_link(id: any): string;
+        skill_book(id: any): string;
+        skill_book_link(id: any): string;
     }
 }
 
