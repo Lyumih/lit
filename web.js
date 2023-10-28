@@ -9711,6 +9711,11 @@ var $;
         menu_title() {
             return "LitRPG База Данных";
         }
+        attr() {
+            return {
+                mol_theme: "$mol_theme_light"
+            };
+        }
         param() {
             return "page";
         }

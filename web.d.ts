@@ -3007,6 +3007,7 @@ declare namespace $ {
 declare namespace $ {
     class $lit_app extends $mol_book2_catalog {
         menu_title(): string;
+        attr(): Record<string, any>;
         param(): string;
         spreads(): Record<string, any>;
         Skill(): $$.$lit_app_skill;

@@ -690,6 +690,8 @@ $lit_app_skill $mol_page
 
 $lit_app $mol_book2_catalog
 	menu_title \LitRPG База Данных
+	attr *
+		mol_theme \$mol_theme_light
 	param \page
 	spreads *
 		- book <= Book $mol_page
