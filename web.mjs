@@ -9366,30 +9366,6 @@ var $;
             ];
             return obj;
         }
-        skill_author(id) {
-            return "";
-        }
-        skill_author_link(id) {
-            return "";
-        }
-        Skill_author(id) {
-            const obj = new this.$.$mol_link();
-            obj.title = () => this.skill_author(id);
-            obj.uri = () => this.skill_author_link(id);
-            return obj;
-        }
-        skill_book(id) {
-            return "";
-        }
-        skill_book_link(id) {
-            return "";
-        }
-        Skill_book(id) {
-            const obj = new this.$.$mol_link();
-            obj.title = () => this.skill_book(id);
-            obj.uri = () => this.skill_book_link(id);
-            return obj;
-        }
         skill_name(id) {
             return "";
         }
@@ -9406,13 +9382,44 @@ var $;
             obj.text = () => this.skill_desc(id);
             return obj;
         }
+        skill_book(id) {
+            return "";
+        }
+        skill_book_link(id) {
+            return "";
+        }
+        Skill_book(id) {
+            const obj = new this.$.$mol_link();
+            obj.title = () => this.skill_book(id);
+            obj.uri = () => this.skill_book_link(id);
+            return obj;
+        }
+        skill_author(id) {
+            return "";
+        }
+        skill_author_link(id) {
+            return "";
+        }
+        Skill_author(id) {
+            const obj = new this.$.$mol_link();
+            obj.title = () => this.skill_author(id);
+            obj.uri = () => this.skill_author_link(id);
+            return obj;
+        }
+        Author_row(id) {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => [
+                this.Skill_book(id),
+                this.Skill_author(id)
+            ];
+            return obj;
+        }
         Skill(id) {
             const obj = new this.$.$mol_list();
             obj.rows = () => [
-                this.Skill_author(id),
-                this.Skill_book(id),
                 this.Skill_name(id),
-                this.Skill_desc(id)
+                this.Skill_desc(id),
+                this.Author_row(id)
             ];
             return obj;
         }
@@ -9438,16 +9445,19 @@ var $;
     ], $lit_app_skill.prototype, "Filter_row", null);
     __decorate([
         $mol_mem_key
-    ], $lit_app_skill.prototype, "Skill_author", null);
+    ], $lit_app_skill.prototype, "Skill_name", null);
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_skill.prototype, "Skill_desc", null);
     __decorate([
         $mol_mem_key
     ], $lit_app_skill.prototype, "Skill_book", null);
     __decorate([
         $mol_mem_key
-    ], $lit_app_skill.prototype, "Skill_name", null);
+    ], $lit_app_skill.prototype, "Skill_author", null);
     __decorate([
         $mol_mem_key
-    ], $lit_app_skill.prototype, "Skill_desc", null);
+    ], $lit_app_skill.prototype, "Author_row", null);
     __decorate([
         $mol_mem_key
     ], $lit_app_skill.prototype, "Skill", null);
@@ -9504,7 +9514,7 @@ var $;
                 ];
             }
             skill_list() {
-                const filtered_skills = this.skill_data().filter(skill => this.search() ? skill.name.toLowerCase().includes(this.search().toLowerCase()) : true);
+                const filtered_skills = this.skill_data().filter(skill => this.search() ? skill.description.toLowerCase().includes(this.search().toLowerCase()) : true);
                 console.log(filtered_skills, this.search());
                 return filtered_skills.map(skill => this.Skill(skill.id));
             }
