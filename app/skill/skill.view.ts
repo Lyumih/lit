@@ -1,8 +1,23 @@
+namespace $ {
+	export const $lit_app_skill_Book = $mol_data_record({
+		id: $mol_data_string,
+		author: $mol_data_string,
+		author_link: $mol_data_string,
+		book: $mol_data_string,
+		book_link: $mol_data_string,
+		chapter: $mol_data_string,
+		chapter_link: $mol_data_string,
+		name: $mol_data_string,
+		description: $mol_data_string,
+	})
+	export const $lit_app_skill_Books = $mol_data_array($lit_app_skill_Book)
+}
+
 namespace $.$$ {
 	export class $lit_app_skill extends $.$lit_app_skill {
 
 		skill_data() {
-			return [
+			return this.$.$lit_app_skill_Books([
 				{
 					id: '1',
 					author: 'Пётр Жгулёв',
@@ -38,7 +53,7 @@ namespace $.$$ {
 Насыщение:
 0/10 ОС`,
 				},
-			]
+			])
 		}
 		skill_list(): readonly any[] {
 			const filtered_skills = this.skill_data().filter(skill => this.search()? skill.description.toLowerCase().includes(this.search().toLowerCase()) : true)
