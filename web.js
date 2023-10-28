@@ -9352,17 +9352,17 @@ var $;
         }
         body() {
             return [
-                this.Skill()
+                this.Item()
             ];
         }
-        Skill() {
+        Item() {
             const obj = new this.$.$lit_app_item();
             return obj;
         }
     }
     __decorate([
         $mol_mem
-    ], $lit_app.prototype, "Skill", null);
+    ], $lit_app.prototype, "Item", null);
     $.$lit_app = $lit_app;
 })($ || ($ = {}));
 //lit/app/-view.tree/app.view.tree.ts

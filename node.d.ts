@@ -3053,7 +3053,7 @@ declare namespace $ {
         title(): string;
         attr(): Record<string, any>;
         body(): readonly any[];
-        Skill(): $$.$lit_app_item;
+        Item(): $$.$lit_app_item;
     }
 }
 
