@@ -925,16 +925,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_plugin extends $mol_view {
-        dom_node_external(next?: Element): Element;
-        attr_static(): {
-            [key: string]: string | number | boolean;
-        };
-        render(): void;
-    }
-}
-
-declare namespace $ {
     class $mol_scroll extends $mol_view {
         scroll_top(next?: any): number;
         scroll_left(next?: any): number;
@@ -1024,14 +1014,56 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_book2 extends $mol_scroll {
-        menu_title(): string;
-        sub(): readonly $mol_view[];
-        minimal_width(): number;
-        Placeholder(): $mol_view;
-        Gap(id: any): $mol_view;
-        pages(): readonly $mol_view[];
+    class $mol_page extends $mol_view {
+        dom_name(): string;
+        field(): Record<string, any>;
+        sub(): readonly any[];
+        tabindex(): number;
+        Logo(): any;
+        title_content(): readonly any[];
+        Title(): $mol_view;
+        tools(): readonly $mol_view_content[];
+        Tools(): $mol_view;
+        head(): readonly any[];
+        Head(): $mol_view;
+        body(): readonly $mol_view_content[];
+        body_scroll_top(next?: any): number;
+        Body(): $$.$mol_scroll;
+        foot(): readonly $mol_view[];
+        Foot(): $mol_view;
     }
+}
+
+declare namespace $ {
+    class $mol_plugin extends $mol_view {
+        dom_node_external(next?: Element): Element;
+        attr_static(): {
+            [key: string]: string | number | boolean;
+        };
+        render(): void;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+    class $mol_list extends $mol_view {
+        render_visible_only(): boolean;
+        render_over(): number;
+        sub(): readonly $mol_view[];
+        Empty(): $mol_view;
+        Gap_before(): $mol_view;
+        Gap_after(): $mol_view;
+        view_window(): readonly any[];
+        rows(): readonly $mol_view[];
+        gap_before(): number;
+        gap_after(): number;
+    }
+}
+
+declare namespace $ {
+    function $mol_support_css_overflow_anchor(this: $): boolean;
 }
 
 declare namespace $ {
@@ -1039,80 +1071,15 @@ declare namespace $ {
 }
 
 declare namespace $.$$ {
-    class $mol_book2 extends $.$mol_book2 {
-        title(): string;
-        menu_title(): string;
+    class $mol_list extends $.$mol_list {
         sub(): readonly $mol_view[];
-        bring(): void;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_link extends $mol_view {
-        uri(): string;
-        dom_name(): string;
-        uri_off(): string;
-        uri_native(): any;
-        external(): boolean;
-        attr(): Record<string, any>;
-        sub(): readonly $mol_view_content[];
-        arg(): Record<string, any>;
-        event(): Record<string, any>;
-        uri_toggle(): string;
-        hint(): string;
-        hint_safe(): string;
-        target(): string;
-        file_name(): string;
-        current(): boolean;
-        event_click(event?: any): any;
-        click(event?: any): any;
-    }
-}
-
-declare namespace $ {
-    let $mol_action: typeof $mol_wire_method;
-}
-
-declare namespace $ {
-    class $mol_state_arg extends $mol_object {
-        prefix: string;
-        static prolog: string;
-        static separator: string;
-        static href(next?: string): string;
-        static href_normal(): string;
-        static dict(next?: {
-            [key: string]: string | null;
-        }): Readonly<{
-            [key: string]: string;
-        }>;
-        static value(key: string, next?: string | null): string | null;
-        static link(next: Record<string, string | null>): string;
-        static make_link(next: Record<string, string | null>): string;
-        static go(next: {
-            [key: string]: string | null;
-        }): void;
-        constructor(prefix?: string);
-        value(key: string, next?: string): string | null;
-        sub(postfix: string): $mol_state_arg;
-        link(next: Record<string, string | null>): string;
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_link extends $.$mol_link {
-        uri_toggle(): string;
-        uri(): string;
-        uri_off(): string;
-        uri_native(): URL;
-        current(): boolean;
-        file_name(): string;
+        render_visible_only(): boolean;
+        view_window(next?: [number, number]): [number, number];
+        gap_before(): number;
+        gap_after(): number;
+        sub_visible(): $mol_view[];
         minimal_height(): number;
-        external(): boolean;
-        target(): '_self' | '_blank' | '_top' | '_parent' | string;
-        hint_safe(): string;
+        force_render(path: Set<$mol_view>): void;
     }
 }
 
@@ -1599,6 +1566,10 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    let $mol_action: typeof $mol_wire_method;
+}
+
+declare namespace $ {
     function $mol_dom_parse(text: string, type?: DOMParserSupportedType): Document;
 }
 
@@ -1773,41 +1744,6 @@ declare namespace $ {
     class $mol_icon_cross extends $mol_icon {
         path(): string;
     }
-}
-
-declare namespace $ {
-    class $mol_list extends $mol_view {
-        render_visible_only(): boolean;
-        render_over(): number;
-        sub(): readonly $mol_view[];
-        Empty(): $mol_view;
-        Gap_before(): $mol_view;
-        Gap_after(): $mol_view;
-        view_window(): readonly any[];
-        rows(): readonly $mol_view[];
-        gap_before(): number;
-        gap_after(): number;
-    }
-}
-
-declare namespace $ {
-    function $mol_support_css_overflow_anchor(this: $): boolean;
-}
-
-declare namespace $.$$ {
-    class $mol_list extends $.$mol_list {
-        sub(): readonly $mol_view[];
-        render_visible_only(): boolean;
-        view_window(next?: [number, number]): [number, number];
-        gap_before(): number;
-        gap_after(): number;
-        sub_visible(): $mol_view[];
-        minimal_height(): number;
-        force_render(path: Set<$mol_view>): void;
-    }
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -2002,92 +1938,6 @@ declare namespace $.$$ {
         menu_items(): $mol_button_minor[];
         suggest_select(id: string, event?: MouseEvent): void;
         clear(event?: Event): void;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_page extends $mol_view {
-        dom_name(): string;
-        field(): Record<string, any>;
-        sub(): readonly any[];
-        tabindex(): number;
-        Logo(): any;
-        title_content(): readonly any[];
-        Title(): $mol_view;
-        tools(): readonly $mol_view_content[];
-        Tools(): $mol_view;
-        head(): readonly any[];
-        Head(): $mol_view;
-        body(): readonly $mol_view_content[];
-        body_scroll_top(next?: any): number;
-        Body(): $$.$mol_scroll;
-        foot(): readonly $mol_view[];
-        Foot(): $mol_view;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
-    class $mol_book2_catalog extends $mol_book2 {
-        param(): string;
-        spread(next?: any): string;
-        spreads(): Record<string, any>;
-        Spread(id: any): $mol_view;
-        Spread_default(): any;
-        spread_ids(): readonly string[];
-        menu_filter_enabled(): boolean;
-        spread_ids_filtered(): readonly string[];
-        pages(): readonly any[];
-        Spread_close(): $$.$mol_link;
-        menu_title(): string;
-        menu_tools(): readonly any[];
-        menu_head(): readonly any[];
-        menu_filter(next?: any): string;
-        Menu_filter(): $$.$mol_search;
-        arg(id: any): Record<string, any>;
-        spread_title(id: any): string;
-        Menu_link_title(id: any): $$.$mol_dimmer;
-        menu_link_content(id: any): readonly any[];
-        Menu_link(id: any): $$.$mol_link;
-        menu_links(): readonly any[];
-        Menu_links(): $$.$mol_list;
-        menu_body(): readonly any[];
-        menu_foot(): readonly any[];
-        Menu_title(): $mol_view;
-        Menu_tools(): $mol_view;
-        Menu(): $mol_page;
-        spread_close_arg(): Record<string, any>;
-        Spread_close_icon(): $mol_icon_cross;
-    }
-}
-
-declare namespace $ {
-    function $mol_match_text<Variant>(query: string, values: (variant: Variant) => string[]): (variant: Variant) => boolean;
-}
-
-declare namespace $.$$ {
-    class $mol_book2_catalog extends $.$mol_book2_catalog {
-        pages(): any[];
-        spread_ids(): readonly string[];
-        menu_body(): ($mol_list | $mol_search)[];
-        menu_filter_enabled(): boolean;
-        menu_links(): $mol_link[];
-        spread_ids_filtered(): string[];
-        Spread(id: string): $mol_view;
-        Spread_default(): any;
-        spread(next?: string): string;
-        arg(spread: string): {
-            [x: string]: string | null;
-        };
-        spread_close_arg(): {
-            [x: string]: null;
-        };
-        spread_title(spread: string): string;
     }
 }
 
@@ -2547,6 +2397,71 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_link extends $mol_view {
+        uri(): string;
+        dom_name(): string;
+        uri_off(): string;
+        uri_native(): any;
+        external(): boolean;
+        attr(): Record<string, any>;
+        sub(): readonly $mol_view_content[];
+        arg(): Record<string, any>;
+        event(): Record<string, any>;
+        uri_toggle(): string;
+        hint(): string;
+        hint_safe(): string;
+        target(): string;
+        file_name(): string;
+        current(): boolean;
+        event_click(event?: any): any;
+        click(event?: any): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_state_arg extends $mol_object {
+        prefix: string;
+        static prolog: string;
+        static separator: string;
+        static href(next?: string): string;
+        static href_normal(): string;
+        static dict(next?: {
+            [key: string]: string | null;
+        }): Readonly<{
+            [key: string]: string;
+        }>;
+        static value(key: string, next?: string | null): string | null;
+        static link(next: Record<string, string | null>): string;
+        static make_link(next: Record<string, string | null>): string;
+        static go(next: {
+            [key: string]: string | null;
+        }): void;
+        constructor(prefix?: string);
+        value(key: string, next?: string): string | null;
+        sub(postfix: string): $mol_state_arg;
+        link(next: Record<string, string | null>): string;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_link extends $.$mol_link {
+        uri_toggle(): string;
+        uri(): string;
+        uri_off(): string;
+        uri_native(): URL;
+        current(): boolean;
+        file_name(): string;
+        minimal_height(): number;
+        external(): boolean;
+        target(): '_self' | '_blank' | '_top' | '_parent' | string;
+        hint_safe(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_image extends $mol_view {
         dom_name(): string;
         field(): Record<string, any>;
@@ -2896,9 +2811,8 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $lit_app_skill extends $mol_page {
-        title(): string;
-        body(): readonly any[];
+    class $lit_app_item extends $mol_list {
+        rows(): readonly any[];
         search(next?: any): any;
         Item_filter(): $$.$mol_search;
         Filter_row(): $mol_row;
@@ -2975,7 +2889,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $lit_app_skill_Book: ((val: {
+    const $lit_app_item_Book: ((val: {
         name: string;
         id: string;
         author: string;
@@ -3019,7 +2933,7 @@ declare namespace $ {
             description: string;
         }>;
     };
-    const $lit_app_skill_Books: ((val: readonly {
+    const $lit_app_item_Books: ((val: readonly {
         name: string;
         id: string;
         author: string;
@@ -3098,7 +3012,7 @@ declare namespace $ {
     };
 }
 declare namespace $.$$ {
-    class $lit_app_skill extends $.$lit_app_skill {
+    class $lit_app_item extends $.$lit_app_item {
         skill_data(): readonly Readonly<{
             name: string;
             id: string;
@@ -3135,12 +3049,11 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $lit_app extends $mol_book2_catalog {
-        menu_title(): string;
+    class $lit_app extends $mol_page {
+        title(): string;
         attr(): Record<string, any>;
-        param(): string;
-        spreads(): Record<string, any>;
-        Skill(): $$.$lit_app_skill;
+        body(): readonly any[];
+        Skill(): $$.$lit_app_item;
     }
 }
 

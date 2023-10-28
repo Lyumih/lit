@@ -8,32 +8,40 @@ $mol_scroll $mol_view
 		^
 		scroll?event <=> event_scroll?event null
 
-$mol_book2 $mol_scroll
-	menu_title \
-	sub <= pages /$mol_view
-	minimal_width 0
-	Placeholder $mol_view
-	Gap* $mol_view title \
+$mol_page $mol_view
+	dom_name \article
+	field *
+		^
+		tabIndex <= tabindex -1
+	sub /
+		<= Head $mol_view
+			minimal_height 64
+			dom_name \header
+			sub <= head /
+				<= Title $mol_view
+					dom_name \h1
+					sub <= title_content /
+						<= Logo null
+						<= title
+				<= Tools $mol_view
+					sub <= tools /$mol_view_content
+		<= Body $mol_scroll
+			scroll_top? => body_scroll_top?
+			sub <= body /$mol_view_content
+		<= Foot $mol_view
+			dom_name \footer
+			sub <= foot /$mol_view
 
-$mol_link $mol_view
-	uri \
-	dom_name \a
-	uri_off \
-	uri_native null
-	external false
-	attr *
-		^
-		href <= uri_toggle \
-		title <= hint_safe <= hint \
-		target <= target \_self
-		download <= file_name \
-		mol_link_current <= current false
-	sub /$mol_view_content
-		<= title
-	arg *
-	event *
-		^
-		click?event <=> click?event <=> event_click?event null
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0
+	sub <= rows /$mol_view
+	Empty $mol_view
+	Gap_before $mol_view style * paddingTop <= gap_before 0
+	Gap_after $mol_view style * paddingTop <= gap_after 0
+	view_window /
+		0
+		0
 
 $mol_pop $mol_view
 	showed? false
@@ -189,17 +197,6 @@ $mol_icon $mol_svg_root
 
 $mol_icon_cross $mol_icon path \M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z
 
-$mol_list $mol_view
-	render_visible_only true
-	render_over 0
-	sub <= rows /$mol_view
-	Empty $mol_view
-	Gap_before $mol_view style * paddingTop <= gap_before 0
-	Gap_after $mol_view style * paddingTop <= gap_after 0
-	view_window /
-		0
-		0
-
 $mol_paragraph $mol_view
 	line_height 24
 	letter_width 7
@@ -254,65 +251,6 @@ $mol_search $mol_pop
 			<= Suggest_label* $mol_dimmer
 				haystack <= suggest_label* \
 				needle <= query? \
-
-$mol_page $mol_view
-	dom_name \article
-	field *
-		^
-		tabIndex <= tabindex -1
-	sub /
-		<= Head $mol_view
-			minimal_height 64
-			dom_name \header
-			sub <= head /
-				<= Title $mol_view
-					dom_name \h1
-					sub <= title_content /
-						<= Logo null
-						<= title
-				<= Tools $mol_view
-					sub <= tools /$mol_view_content
-		<= Body $mol_scroll
-			scroll_top? => body_scroll_top?
-			sub <= body /$mol_view_content
-		<= Foot $mol_view
-			dom_name \footer
-			sub <= foot /$mol_view
-
-$mol_book2_catalog $mol_book2
-	param \
-	spread? \
-	spreads *
-	Spread* $mol_view
-	Spread_default null
-	spread_ids /string
-	menu_filter_enabled false
-	spread_ids_filtered /string
-	pages /
-		<= Menu $mol_page
-			Title => Menu_title
-			title <= menu_title \
-			Tools => Menu_tools
-			tools <= menu_tools /
-			head <= menu_head /
-				<= Menu_title
-				<= Menu_tools
-			body <= menu_body /
-				<= Menu_filter $mol_search
-					query? <=> menu_filter? \
-				<= Menu_links $mol_list
-					rows <= menu_links /
-						<= Menu_link*0 $mol_link
-							arg <= arg* *
-							sub <= menu_link_content* /
-								<= Menu_link_title* $mol_dimmer
-									needle <= menu_filter
-									haystack <= spread_title* \
-			foot <= menu_foot /
-	Spread_close $mol_link
-		arg <= spread_close_arg *
-		sub /
-			<= Spread_close_icon $mol_icon_cross
 
 $mol_row $mol_view
 
@@ -472,6 +410,26 @@ $mol_grid_cell $mol_view
 	minimal_height 40
 
 $mol_grid_number $mol_grid_cell
+
+$mol_link $mol_view
+	uri \
+	dom_name \a
+	uri_off \
+	uri_native null
+	external false
+	attr *
+		^
+		href <= uri_toggle \
+		title <= hint_safe <= hint \
+		target <= target \_self
+		download <= file_name \
+		mol_link_current <= current false
+	sub /$mol_view_content
+		<= title
+	arg *
+	event *
+		^
+		click?event <=> click?event <=> event_click?event null
 
 $mol_image $mol_view
 	dom_name \img
@@ -669,32 +627,26 @@ $mol_text_list_item $mol_paragraph
 		^
 		mol_text_list_item_index <= index 0
 
-$lit_app_skill $mol_page
-	title \Умения
-	body /
-		<= Filter_row $mol_row sub /
-			<= Item_filter $mol_search
-				hint \Поиск
-				query? <=> search? null
-		<= Skill_list $mol_list rows <= skill_list /
-			<= Skill*0 $mol_list rows /
-				<= Skill_name* $mol_text text <= skill_name* \
-				<= Skill_desc* $mol_text text <= skill_desc* \
-				<= Author* $mol_row sub /
-					<= Skill_book* $mol_link
-						title <= skill_book* \
-						uri <= skill_book_link* \
-					<= Skill_author* $mol_link
-						title <= skill_author* \
-						uri <= skill_author_link* \
+$lit_app_item $mol_list rows /
+	<= Filter_row $mol_row sub /
+		<= Item_filter $mol_search
+			hint \Поиск
+			query? <=> search? null
+	<= Skill_list $mol_list rows <= skill_list /
+		<= Skill*0 $mol_list rows /
+			<= Skill_name* $mol_text text <= skill_name* \
+			<= Skill_desc* $mol_text text <= skill_desc* \
+			<= Author* $mol_row sub /
+				<= Skill_book* $mol_link
+					title <= skill_book* \
+					uri <= skill_book_link* \
+				<= Skill_author* $mol_link
+					title <= skill_author* \
+					uri <= skill_author_link* \
 
-$lit_app $mol_book2_catalog
-	menu_title \LitRPG База Данных
+$lit_app $mol_page
+	title \LitRPG База Данных
 	attr *
 		mol_theme \$mol_theme_light
-	param \page
-	spreads *
-		- book <= Book $mol_page
-		- author <= Author $mol_page
-		skill <= Skill $lit_app_skill
-		- quest <= Quest $mol_page
+	body /
+		<= Skill $lit_app_item
