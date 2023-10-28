@@ -51,7 +51,7 @@ namespace $.$$ {
 		}
 
 		skill_name( id: any ): string {
-			return "# " +this.get_skill(id)?.name || 'no name'
+			return "## " +this.get_skill(id)?.name || 'no name'
 		}
 
 		skill_desc( id: any ): string {
