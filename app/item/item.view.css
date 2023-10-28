@@ -1,15 +1,5 @@
-[lit_app_item_skill] {
+[lit_app_item_author], [lit_app_item_book], [lit_app_item_item] {
 	border: 2px solid grey;
 	border-radius: 2rem;
 	padding: 1rem;
-}
-
-[lit_app_item_skill] + [lit_app_item_skill] {
-	margin-top: 2rem;
-}
-
-[lit_app_item_author] {
-	border: 1px solid gray;
-	border-radius: 1rem;
-	justify-content: space-between;
 }

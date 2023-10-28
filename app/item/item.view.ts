@@ -1,92 +1,133 @@
 namespace $ {
-	export const $lit_app_item_Book = $mol_data_record({
+	export const $lit_app_item_type_Item = $mol_data_record({
 		id: $mol_data_string,
-		author: $mol_data_string,
-		author_link: $mol_data_string,
-		book: $mol_data_string,
-		book_link: $mol_data_string,
-		chapter: $mol_data_string,
-		chapter_link: $mol_data_string,
 		name: $mol_data_string,
 		description: $mol_data_string,
+		type: $mol_data_string,
+		chapter: $mol_data_string,
+		chapter_link: $mol_data_string,
 	})
-	export const $lit_app_item_Books = $mol_data_array($lit_app_item_Book)
+	export const $lit_app_item_type_Book = $mol_data_record({
+		id: $mol_data_string,
+		name: $mol_data_string,
+		description: $mol_data_string,
+		link: $mol_data_string,
+		series: $mol_data_string,
+		items: $mol_data_array($lit_app_item_type_Item),
+	})
+	export const $lit_app_item_type_Author = $mol_data_record({
+		id: $mol_data_string,
+		name: $mol_data_string,
+		description: $mol_data_string,
+		link: $mol_data_string,
+		books: $mol_data_array($lit_app_item_type_Book),
+	})
+	export const $lit_app_item_type_Authors = $mol_data_array($lit_app_item_type_Author)
 }
 
 namespace $.$$ {
 	export class $lit_app_item extends $.$lit_app_item {
 
-		skill_data() {
-			return this.$.$lit_app_item_Books([
+		authors_data() {
+			return this.$.$lit_app_item_type_Authors([
 				{
-					id: '1',
-					author: 'Пётр Жгулёв',
-					author_link: 'https://author.today/u/zhg2005/works',
-					book: 'Real-Rpg. Город гоблинов',
-					book_link: 'https://author.today/work/17501',
-					chapter: '1',
-					chapter_link: 'https://author.today/reader/17501/622184',
-					name: 'Владение копьем',
-					description: `Владение копьем
-Ранг: F.
-Уровень: 1/5.
-Тип: навык.
-Особенности:
-— Обучает пользователя владению копьем.
-— Минимально адаптирует организм под выбранный тип оружия.`,
-				},
-				{
-					id: '2',
-					author: 'Пётр Жгулёв',
-					author_link: 'https://author.today/u/zhg2005/works',
-					book: 'Real-Rpg. Город гоблинов',
-					book_link: 'https://author.today/work/17501',
-					chapter: '2',
-					chapter_link: 'https://author.today/reader/17501/622188',
-					name: 'Стрельба из лука',
-					description: `Стрельба из лука
-Ранг: F.
-Тип: навык.
-Уровень: 1/5.
-Описание:
-— Навык стрельбы из лука, взятый у одного из гоблинских племен.
-Насыщение:
-0/10 ОС`,
-				},
+					id: 'a_1',
+					name: "Пётр Жгулёв",
+					description: 'описание автора',
+					link: 'https://author.today/u/zhg2005/works',
+					books: [
+						{
+							id: 'b_1_1',
+							name: "Real-Rpg. Город гоблинов",
+							description: 'описание книги',
+							link: 'https://author.today/reader/17501',
+							series: "Город гоблинов",
+							items: [
+								{
+									id: 'i_1_1_1',
+									name: "Владение копьём",
+									description: `Владение копьем\nРанг: F.\nУровень: 1/5.\nТип: навык.\nОсобенности:\n— Обучает пользователя владению копьем.\n— Минимально адаптирует организм под выбранный тип оружия.`,
+									type: 'skill',
+									chapter: '1',
+									chapter_link: 'https://author.today/reader/17501/622184'
+								},
+								{
+									id: 'i_1_1_2',
+									name: "владение копьём",
+									description: 'описание',
+									type: 'skill',
+									chapter: '1',
+									chapter_link: 'https://author.today/reader/17501/622184'
+								},
+							]
+						}, {
+							id: 'b_1_2',
+							name: "Real-Rpg. Город гоблинов 2",
+							description: 'описание книги 2',
+							link: 'https://author.today/reader/17501',
+							series: "Город гоблинов",
+							items: [],
+						}
+					]
+				}, {
+					id: 'a_2',
+					name: "Джон Голд",
+					description: 'описание автора',
+					link: 'https://author.today/u/siu_tower_of_god',
+					books: [],
+				}
 			])
 		}
-		skill_list(): readonly any[] {
-			const filtered_skills = this.skill_data().filter(skill => this.search()? skill.description.toLowerCase().includes(this.search().toLowerCase()) : true)
-			console.log(filtered_skills, this.search())
-			return filtered_skills.map(skill => this.Skill(skill.id))
+
+
+		author_list(): readonly any[] {
+			return this.authors_data().map(author => this.Author(author.id))
 		}
 
-		get_skill(id: string) {
-			return this.skill_data().find(skill => skill.id === id)
+		get_author(id: string) {
+			return this.authors_data().find(author => author.id === id) ?? undefined
 		}
 
-		skill_name( id: any ): string {
-			return "## " +this.get_skill(id)?.name || 'no name'
+		author_name( id: any ): string {
+			return "## " + this.get_author(id)?.name || 'no name'
 		}
 
-		skill_desc( id: any ): string {
-			return this.get_skill(id)?.description || 'no description'
+		book_list(id: any): readonly any[] {
+			console.log('book_list',id)
+			return this.get_author(id)?.books?.map(book => this.Book(id + '__'+book.id)) ?? []
 		}
 
-		skill_author( id: any ): string {
-			return this.get_skill(id)?.author || 'no author'
+		get_book(id: string) {
+			const [author_id, book_id] = id.split('__')
+			console.log('book', id, author_id, book_id)
+			return this.get_author(author_id)?.books?.find(book => book.id === book_id)
 		}
 
-		skill_author_link( id: any ): string {
-			return this.get_skill(id)?.author_link || 'no author link'
+		book_name( id: any ): string {
+			console.log('book_name',id)
+
+			return this.get_book(id)?.name || 'no name'
 		}
 
-		skill_book( id: any ): string {
-			return `${this.get_skill(id)?.book}. Глава ${this.get_skill(id)?.chapter}` || 'no book'
+		items_list( id: any ): readonly any[] {
+			return this.get_book(id)?.items?.map(item => this.Item(id + '__'+item.id)) ?? []
 		}
 
-		skill_book_link( id: any ): string {
-			return this.get_skill(id)?.chapter_link || 'no book link'
+		get_item(id: string) {
+			const [author_id, book_id, item_id] = id.split('__')
+			return this.get_book([author_id, book_id].join('__'))?.items?.find(item => item.id === item_id)
+		}
+
+		item_name( id: any ): string {
+			return this.get_item(id)?.name || 'no name'
+		}
+
+		item_type( id: any ) {
+			return this.get_item(id)?.type || 'no type'
+		}
+
+		item_desc( id: any ) {
+			return this.get_item(id)?.description || 'no description'
 		}
 
 	}
