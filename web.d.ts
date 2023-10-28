@@ -2686,20 +2686,25 @@ declare namespace $ {
         search(next?: any): any;
         Item_filter(): $$.$mol_search;
         Filter_row(): $mol_row;
-        skill_name(id: any): string;
-        Skill_name(id: any): $$.$mol_text;
-        skill_desc(id: any): string;
-        Skill_desc(id: any): $$.$mol_text;
-        skill_book(id: any): string;
-        skill_book_link(id: any): string;
-        Skill_book(id: any): $$.$mol_link;
-        skill_author(id: any): string;
-        skill_author_link(id: any): string;
-        Skill_author(id: any): $$.$mol_link;
-        Author(id: any): $mol_row;
-        Skill(id: any): $$.$mol_list;
-        skill_list(): readonly any[];
-        Skill_list(): $$.$mol_list;
+        author_name(id: any): string;
+        Author_name(id: any): $$.$mol_text;
+        book_name(id: any): string;
+        Book_name(id: any): $$.$mol_text;
+        item_type(id: any): string;
+        Item_type(id: any): $$.$mol_text;
+        item_name(id: any): string;
+        Item_name(id: any): $$.$mol_text;
+        item_desc(id: any): string;
+        Item_desc(id: any): $$.$mol_text;
+        Item(id: any): $$.$mol_list;
+        items_list(id: any): readonly any[];
+        Items(id: any): $$.$mol_list;
+        Book(id: any): $$.$mol_list;
+        book_list(id: any): readonly any[];
+        Books(id: any): $$.$mol_list;
+        Author(id: any): $$.$mol_list;
+        author_list(): readonly any[];
+        Authors(): $$.$mol_list;
     }
 }
 
@@ -2759,159 +2764,729 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $lit_app_item_Book: ((val: {
+    const $lit_app_item_type_Item: ((val: {
+        type: string;
         name: string;
         id: string;
-        author: string;
-        author_link: string;
-        book: string;
-        book_link: string;
+        description: string;
         chapter: string;
         chapter_link: string;
-        description: string;
     }) => Readonly<{
+        type: string;
         name: string;
         id: string;
-        author: string;
-        author_link: string;
-        book: string;
-        book_link: string;
+        description: string;
         chapter: string;
         chapter_link: string;
-        description: string;
     }>) & {
         config: {
             id: (val: string) => string;
-            author: (val: string) => string;
-            author_link: (val: string) => string;
-            book: (val: string) => string;
-            book_link: (val: string) => string;
-            chapter: (val: string) => string;
-            chapter_link: (val: string) => string;
             name: (val: string) => string;
             description: (val: string) => string;
+            type: (val: string) => string;
+            chapter: (val: string) => string;
+            chapter_link: (val: string) => string;
         };
         Value: Readonly<{
+            type: string;
             name: string;
             id: string;
-            author: string;
-            author_link: string;
-            book: string;
-            book_link: string;
+            description: string;
             chapter: string;
             chapter_link: string;
-            description: string;
         }>;
     };
-    const $lit_app_item_Books: ((val: readonly {
+    const $lit_app_item_type_Book: ((val: {
+        link: string;
         name: string;
         id: string;
-        author: string;
-        author_link: string;
-        book: string;
-        book_link: string;
-        chapter: string;
-        chapter_link: string;
         description: string;
+        series: string;
+        items: readonly {
+            type: string;
+            name: string;
+            id: string;
+            description: string;
+            chapter: string;
+            chapter_link: string;
+        }[];
+    }) => Readonly<{
+        link: string;
+        name: string;
+        id: string;
+        description: string;
+        series: string;
+        items: readonly Readonly<{
+            type: string;
+            name: string;
+            id: string;
+            description: string;
+            chapter: string;
+            chapter_link: string;
+        }>[];
+    }>) & {
+        config: {
+            id: (val: string) => string;
+            name: (val: string) => string;
+            description: (val: string) => string;
+            link: (val: string) => string;
+            series: (val: string) => string;
+            items: ((val: readonly {
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }[]) => readonly Readonly<{
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }>[]) & {
+                config: ((val: {
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }) => Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>) & {
+                    config: {
+                        id: (val: string) => string;
+                        name: (val: string) => string;
+                        description: (val: string) => string;
+                        type: (val: string) => string;
+                        chapter: (val: string) => string;
+                        chapter_link: (val: string) => string;
+                    };
+                    Value: Readonly<{
+                        type: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        chapter: string;
+                        chapter_link: string;
+                    }>;
+                };
+                Value: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            };
+        };
+        Value: Readonly<{
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            series: string;
+            items: readonly Readonly<{
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }>[];
+        }>;
+    };
+    const $lit_app_item_type_Author: ((val: {
+        link: string;
+        name: string;
+        id: string;
+        description: string;
+        books: readonly {
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            series: string;
+            items: readonly {
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }[];
+        }[];
+    }) => Readonly<{
+        link: string;
+        name: string;
+        id: string;
+        description: string;
+        books: readonly Readonly<{
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            series: string;
+            items: readonly Readonly<{
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }>[];
+        }>[];
+    }>) & {
+        config: {
+            id: (val: string) => string;
+            name: (val: string) => string;
+            description: (val: string) => string;
+            link: (val: string) => string;
+            books: ((val: readonly {
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly {
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }[];
+            }[]) => readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            }>[]) & {
+                config: ((val: {
+                    link: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    series: string;
+                    items: readonly {
+                        type: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        chapter: string;
+                        chapter_link: string;
+                    }[];
+                }) => Readonly<{
+                    link: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    series: string;
+                    items: readonly Readonly<{
+                        type: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        chapter: string;
+                        chapter_link: string;
+                    }>[];
+                }>) & {
+                    config: {
+                        id: (val: string) => string;
+                        name: (val: string) => string;
+                        description: (val: string) => string;
+                        link: (val: string) => string;
+                        series: (val: string) => string;
+                        items: ((val: readonly {
+                            type: string;
+                            name: string;
+                            id: string;
+                            description: string;
+                            chapter: string;
+                            chapter_link: string;
+                        }[]) => readonly Readonly<{
+                            type: string;
+                            name: string;
+                            id: string;
+                            description: string;
+                            chapter: string;
+                            chapter_link: string;
+                        }>[]) & {
+                            config: ((val: {
+                                type: string;
+                                name: string;
+                                id: string;
+                                description: string;
+                                chapter: string;
+                                chapter_link: string;
+                            }) => Readonly<{
+                                type: string;
+                                name: string;
+                                id: string;
+                                description: string;
+                                chapter: string;
+                                chapter_link: string;
+                            }>) & {
+                                config: {
+                                    id: (val: string) => string;
+                                    name: (val: string) => string;
+                                    description: (val: string) => string;
+                                    type: (val: string) => string;
+                                    chapter: (val: string) => string;
+                                    chapter_link: (val: string) => string;
+                                };
+                                Value: Readonly<{
+                                    type: string;
+                                    name: string;
+                                    id: string;
+                                    description: string;
+                                    chapter: string;
+                                    chapter_link: string;
+                                }>;
+                            };
+                            Value: readonly Readonly<{
+                                type: string;
+                                name: string;
+                                id: string;
+                                description: string;
+                                chapter: string;
+                                chapter_link: string;
+                            }>[];
+                        };
+                    };
+                    Value: Readonly<{
+                        link: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        series: string;
+                        items: readonly Readonly<{
+                            type: string;
+                            name: string;
+                            id: string;
+                            description: string;
+                            chapter: string;
+                            chapter_link: string;
+                        }>[];
+                    }>;
+                };
+                Value: readonly Readonly<{
+                    link: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    series: string;
+                    items: readonly Readonly<{
+                        type: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        chapter: string;
+                        chapter_link: string;
+                    }>[];
+                }>[];
+            };
+        };
+        Value: Readonly<{
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            books: readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            }>[];
+        }>;
+    };
+    const $lit_app_item_type_Authors: ((val: readonly {
+        link: string;
+        name: string;
+        id: string;
+        description: string;
+        books: readonly {
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            series: string;
+            items: readonly {
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }[];
+        }[];
     }[]) => readonly Readonly<{
+        link: string;
         name: string;
         id: string;
-        author: string;
-        author_link: string;
-        book: string;
-        book_link: string;
-        chapter: string;
-        chapter_link: string;
         description: string;
+        books: readonly Readonly<{
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            series: string;
+            items: readonly Readonly<{
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }>[];
+        }>[];
     }>[]) & {
         config: ((val: {
+            link: string;
             name: string;
             id: string;
-            author: string;
-            author_link: string;
-            book: string;
-            book_link: string;
-            chapter: string;
-            chapter_link: string;
             description: string;
+            books: readonly {
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly {
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }[];
+            }[];
         }) => Readonly<{
+            link: string;
             name: string;
             id: string;
-            author: string;
-            author_link: string;
-            book: string;
-            book_link: string;
-            chapter: string;
-            chapter_link: string;
             description: string;
+            books: readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            }>[];
         }>) & {
             config: {
                 id: (val: string) => string;
-                author: (val: string) => string;
-                author_link: (val: string) => string;
-                book: (val: string) => string;
-                book_link: (val: string) => string;
-                chapter: (val: string) => string;
-                chapter_link: (val: string) => string;
                 name: (val: string) => string;
                 description: (val: string) => string;
+                link: (val: string) => string;
+                books: ((val: readonly {
+                    link: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    series: string;
+                    items: readonly {
+                        type: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        chapter: string;
+                        chapter_link: string;
+                    }[];
+                }[]) => readonly Readonly<{
+                    link: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    series: string;
+                    items: readonly Readonly<{
+                        type: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        chapter: string;
+                        chapter_link: string;
+                    }>[];
+                }>[]) & {
+                    config: ((val: {
+                        link: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        series: string;
+                        items: readonly {
+                            type: string;
+                            name: string;
+                            id: string;
+                            description: string;
+                            chapter: string;
+                            chapter_link: string;
+                        }[];
+                    }) => Readonly<{
+                        link: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        series: string;
+                        items: readonly Readonly<{
+                            type: string;
+                            name: string;
+                            id: string;
+                            description: string;
+                            chapter: string;
+                            chapter_link: string;
+                        }>[];
+                    }>) & {
+                        config: {
+                            id: (val: string) => string;
+                            name: (val: string) => string;
+                            description: (val: string) => string;
+                            link: (val: string) => string;
+                            series: (val: string) => string;
+                            items: ((val: readonly {
+                                type: string;
+                                name: string;
+                                id: string;
+                                description: string;
+                                chapter: string;
+                                chapter_link: string;
+                            }[]) => readonly Readonly<{
+                                type: string;
+                                name: string;
+                                id: string;
+                                description: string;
+                                chapter: string;
+                                chapter_link: string;
+                            }>[]) & {
+                                config: ((val: {
+                                    type: string;
+                                    name: string;
+                                    id: string;
+                                    description: string;
+                                    chapter: string;
+                                    chapter_link: string;
+                                }) => Readonly<{
+                                    type: string;
+                                    name: string;
+                                    id: string;
+                                    description: string;
+                                    chapter: string;
+                                    chapter_link: string;
+                                }>) & {
+                                    config: {
+                                        id: (val: string) => string;
+                                        name: (val: string) => string;
+                                        description: (val: string) => string;
+                                        type: (val: string) => string;
+                                        chapter: (val: string) => string;
+                                        chapter_link: (val: string) => string;
+                                    };
+                                    Value: Readonly<{
+                                        type: string;
+                                        name: string;
+                                        id: string;
+                                        description: string;
+                                        chapter: string;
+                                        chapter_link: string;
+                                    }>;
+                                };
+                                Value: readonly Readonly<{
+                                    type: string;
+                                    name: string;
+                                    id: string;
+                                    description: string;
+                                    chapter: string;
+                                    chapter_link: string;
+                                }>[];
+                            };
+                        };
+                        Value: Readonly<{
+                            link: string;
+                            name: string;
+                            id: string;
+                            description: string;
+                            series: string;
+                            items: readonly Readonly<{
+                                type: string;
+                                name: string;
+                                id: string;
+                                description: string;
+                                chapter: string;
+                                chapter_link: string;
+                            }>[];
+                        }>;
+                    };
+                    Value: readonly Readonly<{
+                        link: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        series: string;
+                        items: readonly Readonly<{
+                            type: string;
+                            name: string;
+                            id: string;
+                            description: string;
+                            chapter: string;
+                            chapter_link: string;
+                        }>[];
+                    }>[];
+                };
             };
             Value: Readonly<{
+                link: string;
                 name: string;
                 id: string;
-                author: string;
-                author_link: string;
-                book: string;
-                book_link: string;
-                chapter: string;
-                chapter_link: string;
                 description: string;
+                books: readonly Readonly<{
+                    link: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    series: string;
+                    items: readonly Readonly<{
+                        type: string;
+                        name: string;
+                        id: string;
+                        description: string;
+                        chapter: string;
+                        chapter_link: string;
+                    }>[];
+                }>[];
             }>;
         };
         Value: readonly Readonly<{
+            link: string;
             name: string;
             id: string;
-            author: string;
-            author_link: string;
-            book: string;
-            book_link: string;
-            chapter: string;
-            chapter_link: string;
             description: string;
+            books: readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            }>[];
         }>[];
     };
 }
 declare namespace $.$$ {
     class $lit_app_item extends $.$lit_app_item {
-        skill_data(): readonly Readonly<{
+        authors_data(): readonly Readonly<{
+            link: string;
             name: string;
             id: string;
-            author: string;
-            author_link: string;
-            book: string;
-            book_link: string;
-            chapter: string;
-            chapter_link: string;
             description: string;
+            books: readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            }>[];
         }>[];
-        skill_list(): readonly any[];
-        get_skill(id: string): Readonly<{
+        author_list(): readonly any[];
+        get_author(id: string): Readonly<{
+            link: string;
             name: string;
             id: string;
-            author: string;
-            author_link: string;
-            book: string;
-            book_link: string;
+            description: string;
+            books: readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            }>[];
+        }> | undefined;
+        author_name(id: any): string;
+        book_list(id: any): readonly any[];
+        get_book(id: string): Readonly<{
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            series: string;
+            items: readonly Readonly<{
+                type: string;
+                name: string;
+                id: string;
+                description: string;
+                chapter: string;
+                chapter_link: string;
+            }>[];
+        }> | undefined;
+        book_name(id: any): string;
+        items_list(id: any): readonly any[];
+        get_item(id: string): Readonly<{
+            type: string;
+            name: string;
+            id: string;
+            description: string;
             chapter: string;
             chapter_link: string;
-            description: string;
         }> | undefined;
-        skill_name(id: any): string;
-        skill_desc(id: any): string;
-        skill_author(id: any): string;
-        skill_author_link(id: any): string;
-        skill_book(id: any): string;
-        skill_book_link(id: any): string;
+        item_name(id: any): string;
+        item_type(id: any): string;
+        item_desc(id: any): string;
     }
 }
 
