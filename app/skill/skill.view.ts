@@ -6,6 +6,7 @@ namespace $.$$ {
 				{
 					id: '1',
 					author: 'Пётр Жгулёв',
+					author_link: 'https://author.today/u/zhg2005/works',
 					book: 'Real-Rpg. Город гоблинов',
 					book_link: 'https://author.today/work/17501',
 					chapter: '1',
@@ -22,10 +23,11 @@ namespace $.$$ {
 				{
 					id: '2',
 					author: 'Пётр Жгулёв',
+					author_link: 'https://author.today/u/zhg2005/works',
 					book: 'Real-Rpg. Город гоблинов',
 					book_link: 'https://author.today/work/17501',
 					chapter: '2',
-					chapter_link: 'https://author.today/reader/17501/622184',
+					chapter_link: 'https://author.today/reader/17501/622188',
 					name: 'Стрельба из лука',
 					description: `Стрельба из лука
 Ранг: F.
@@ -52,6 +54,22 @@ namespace $.$$ {
 
 		skill_desc( id: any ): string {
 			return this.get_skill(id)?.description || 'no description'
+		}
+
+		skill_author( id: any ): string {
+			return this.get_skill(id)?.author || 'no author'
+		}
+
+		skill_author_link( id: any ): string {
+			return this.get_skill(id)?.author_link || 'no author link'
+		}
+
+		skill_book( id: any ): string {
+			return `${this.get_skill(id)?.book}. Глава ${this.get_skill(id)?.chapter}` || 'no book'
+		}
+
+		skill_book_link( id: any ): string {
+			return this.get_skill(id)?.chapter_link || 'no book link'
 		}
 
 	}
