@@ -9508,41 +9508,17 @@ var $;
         }
         spreads() {
             return {
-                book: this.Book(),
-                author: this.Author(),
-                skill: this.Skill(),
-                quest: this.Quest()
+                skill: this.Skill()
             };
-        }
-        Book() {
-            const obj = new this.$.$mol_page();
-            return obj;
-        }
-        Author() {
-            const obj = new this.$.$mol_page();
-            return obj;
         }
         Skill() {
             const obj = new this.$.$lit_app_skill();
             return obj;
         }
-        Quest() {
-            const obj = new this.$.$mol_page();
-            return obj;
-        }
     }
     __decorate([
         $mol_mem
-    ], $lit_app.prototype, "Book", null);
-    __decorate([
-        $mol_mem
-    ], $lit_app.prototype, "Author", null);
-    __decorate([
-        $mol_mem
     ], $lit_app.prototype, "Skill", null);
-    __decorate([
-        $mol_mem
-    ], $lit_app.prototype, "Quest", null);
     $.$lit_app = $lit_app;
 })($ || ($ = {}));
 //lit/app/-view.tree/app.view.tree.ts

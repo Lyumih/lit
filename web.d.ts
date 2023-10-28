@@ -2819,10 +2819,7 @@ declare namespace $ {
         menu_title(): string;
         param(): string;
         spreads(): Record<string, any>;
-        Book(): $mol_page;
-        Author(): $mol_page;
         Skill(): $$.$lit_app_skill;
-        Quest(): $mol_page;
     }
 }
 
