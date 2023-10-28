@@ -5,3 +5,4 @@ $lit_app $mol_book2_catalog
 		book <= Book $mol_page
 		author <= Author $mol_page
 		skill <= Skill $lit_app_skill
+		quest <= Quest $mol_page

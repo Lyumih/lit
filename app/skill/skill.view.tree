@@ -2,11 +2,6 @@ $lit_app_skill $mol_page
 	title \Умения
 	body /
 		<= Skill_list $mol_list rows <= skill_list /
-			<= Skill $mol_text text \
-				\# Навык: Владение копьем (глава 1)
-				\Ранг: F.
-				\Уровень: 1/5.
-				\Тип: навык.
-				\Особенности:
-				\— Обучает пользователя владению копьем.
-				\— Минимально адаптирует организм под выбранный тип оружия.
+			<= Skill*0 $mol_list rows /
+				<= Skill_name* $mol_text text <= skill_name* \
+				<= Skill_desc* $mol_text text <= skill_desc* \
