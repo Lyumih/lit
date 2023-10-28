@@ -3,4 +3,4 @@ $lit_app $mol_page
 	attr *
 		mol_theme \$mol_theme_light
 	body /
-		<= Skill $lit_app_item
+		<= Item $lit_app_item
