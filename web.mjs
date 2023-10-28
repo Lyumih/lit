@@ -9406,7 +9406,7 @@ var $;
             obj.uri = () => this.skill_author_link(id);
             return obj;
         }
-        Author_row(id) {
+        Author(id) {
             const obj = new this.$.$mol_row();
             obj.sub = () => [
                 this.Skill_book(id),
@@ -9419,7 +9419,7 @@ var $;
             obj.rows = () => [
                 this.Skill_name(id),
                 this.Skill_desc(id),
-                this.Author_row(id)
+                this.Author(id)
             ];
             return obj;
         }
@@ -9457,7 +9457,7 @@ var $;
     ], $lit_app_skill.prototype, "Skill_author", null);
     __decorate([
         $mol_mem_key
-    ], $lit_app_skill.prototype, "Author_row", null);
+    ], $lit_app_skill.prototype, "Author", null);
     __decorate([
         $mol_mem_key
     ], $lit_app_skill.prototype, "Skill", null);
@@ -9548,7 +9548,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("lit/app/skill/skill.view.css", "[lit_app_skill_skill] {\n\tborder: 2px solid grey;\n\tborder-radius: 2rem;\n\tpadding: 1rem;\n}\n\n[lit_app_skill_skill] + [lit_app_skill_skill] {\n\tmargin-top: 2rem;\n}\n");
+    $mol_style_attach("lit/app/skill/skill.view.css", "[lit_app_skill_skill] {\n\tborder: 2px solid grey;\n\tborder-radius: 2rem;\n\tpadding: 1rem;\n}\n\n[lit_app_skill_skill] + [lit_app_skill_skill] {\n\tmargin-top: 2rem;\n}\n\n[lit_app_skill_author] {\n\tborder: 1px solid gray;\n\tborder-radius: 1rem;\n\tjustify-content: space-between;\n}\n");
 })($ || ($ = {}));
 //lit/app/skill/-css/skill.view.css.ts
 ;

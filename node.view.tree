@@ -680,7 +680,7 @@ $lit_app_skill $mol_page
 			<= Skill*0 $mol_list rows /
 				<= Skill_name* $mol_text text <= skill_name* \
 				<= Skill_desc* $mol_text text <= skill_desc* \
-				<= Author_row* $mol_row sub /
+				<= Author* $mol_row sub /
 					<= Skill_book* $mol_link
 						title <= skill_book* \
 						uri <= skill_book_link* \

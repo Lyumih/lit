@@ -2782,7 +2782,7 @@ declare namespace $ {
         skill_author(id: any): string;
         skill_author_link(id: any): string;
         Skill_author(id: any): $$.$mol_link;
-        Author_row(id: any): $mol_row;
+        Author(id: any): $mol_row;
         Skill(id: any): $$.$mol_list;
         skill_list(): readonly any[];
         Skill_list(): $$.$mol_list;
