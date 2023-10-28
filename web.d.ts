@@ -1969,6 +1969,14 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_stack extends $mol_view {
     }
 }
@@ -2761,6 +2769,9 @@ declare namespace $ {
     class $lit_app_skill extends $mol_page {
         title(): string;
         body(): readonly any[];
+        search(next?: any): any;
+        Item_filter(): $$.$mol_search;
+        Filter_row(): $mol_row;
         skill_author(id: any): string;
         skill_author_link(id: any): string;
         Skill_author(id: any): $$.$mol_link;
