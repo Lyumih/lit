@@ -7,11 +7,12 @@ $lit_app_skill $mol_page
 				query? <=> search? null
 		<= Skill_list $mol_list rows <= skill_list /
 			<= Skill*0 $mol_list rows /
-				<= Skill_author* $mol_link
-					title <= skill_author* \
-					uri <= skill_author_link* \
-				<= Skill_book* $mol_link
-					title <= skill_book* \
-					uri <= skill_book_link* \
 				<= Skill_name* $mol_text text <= skill_name* \
 				<= Skill_desc* $mol_text text <= skill_desc* \
+				<= Author_row* $mol_row sub /
+					<= Skill_book* $mol_link
+						title <= skill_book* \
+						uri <= skill_book_link* \
+					<= Skill_author* $mol_link
+						title <= skill_author* \
+						uri <= skill_author_link* \
