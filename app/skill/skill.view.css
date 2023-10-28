@@ -7,3 +7,9 @@
 [lit_app_skill_skill] + [lit_app_skill_skill] {
 	margin-top: 2rem;
 }
+
+[lit_app_skill_author] {
+	border: 1px solid gray;
+	border-radius: 1rem;
+	justify-content: space-between;
+}
