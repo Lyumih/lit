@@ -1,0 +1,9 @@
+[lit_app_skill_skill] {
+	border: 2px solid grey;
+	border-radius: 2rem;
+	padding: 1rem;
+}
+
+[lit_app_skill_skill] + [lit_app_skill_skill] {
+	margin-top: 2rem;
+}
