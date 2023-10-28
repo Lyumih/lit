@@ -41,7 +41,9 @@ namespace $.$$ {
 			]
 		}
 		skill_list(): readonly any[] {
-			return this.skill_data().map(skill => this.Skill(skill.id))
+			const filtered_skills = this.skill_data().filter(skill => this.search()? skill.name.toLowerCase().includes(this.search().toLowerCase()) : true)
+			console.log(filtered_skills, this.search())
+			return filtered_skills.map(skill => this.Skill(skill.id))
 		}
 
 		get_skill(id: string) {

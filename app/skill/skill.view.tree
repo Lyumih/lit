@@ -1,6 +1,10 @@
 $lit_app_skill $mol_page
 	title \Умения
 	body /
+		<= Filter_row $mol_row sub /
+			<= Item_filter $mol_search
+				hint \Поиск
+				query? <=> search? null
 		<= Skill_list $mol_list rows <= skill_list /
 			<= Skill*0 $mol_list rows /
 				<= Skill_author* $mol_link
