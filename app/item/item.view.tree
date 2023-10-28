@@ -1,0 +1,16 @@
+$lit_app_item $mol_list rows /
+	<= Filter_row $mol_row sub /
+		<= Item_filter $mol_search
+			hint \Поиск
+			query? <=> search? null
+	<= Skill_list $mol_list rows <= skill_list /
+		<= Skill*0 $mol_list rows /
+			<= Skill_name* $mol_text text <= skill_name* \
+			<= Skill_desc* $mol_text text <= skill_desc* \
+			<= Author* $mol_row sub /
+				<= Skill_book* $mol_link
+					title <= skill_book* \
+					uri <= skill_book_link* \
+				<= Skill_author* $mol_link
+					title <= skill_author* \
+					uri <= skill_author_link* \

@@ -1,5 +1,5 @@
 namespace $ {
-	export const $lit_app_skill_Book = $mol_data_record({
+	export const $lit_app_item_Book = $mol_data_record({
 		id: $mol_data_string,
 		author: $mol_data_string,
 		author_link: $mol_data_string,
@@ -10,14 +10,14 @@ namespace $ {
 		name: $mol_data_string,
 		description: $mol_data_string,
 	})
-	export const $lit_app_skill_Books = $mol_data_array($lit_app_skill_Book)
+	export const $lit_app_item_Books = $mol_data_array($lit_app_item_Book)
 }
 
 namespace $.$$ {
-	export class $lit_app_skill extends $.$lit_app_skill {
+	export class $lit_app_item extends $.$lit_app_item {
 
 		skill_data() {
-			return this.$.$lit_app_skill_Books([
+			return this.$.$lit_app_item_Books([
 				{
 					id: '1',
 					author: 'Пётр Жгулёв',
