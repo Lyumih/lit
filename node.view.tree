@@ -658,16 +658,18 @@ $lit_app_item $mol_list rows /
 	<= Authors $mol_list rows <= author_list /
 		<= Author*0 $mol_expander
 			title <= author_name* \
+			Tools <= Author_stat* $mol_text text <= author_stat* \
 			content /
 				<= Books* $mol_list rows <= book_list* /
 					<= Book*1 $mol_expander
 						title <= book_name* \
+						Tools <= Book_stat* $mol_text text <= book_stat* \
 						content /
 							<= Items* $mol_list rows <= items_list* /
 								<= Item*2 $mol_expander
 									title <= item_name* \
+									Tools <= Item_stat* $mol_text text <= item_stat* \
 									content /
-										<= Item_type* $mol_text text <= item_type* \
 										<= Item_desc* $mol_text text <= item_desc* \
 
 $lit_app $mol_page

@@ -2861,10 +2861,14 @@ declare namespace $ {
         Item_filter(): $$.$mol_search;
         Filter_row(): $mol_row;
         author_name(id: any): string;
+        author_stat(id: any): string;
+        Author_stat(id: any): $$.$mol_text;
         book_name(id: any): string;
+        book_stat(id: any): string;
+        Book_stat(id: any): $$.$mol_text;
         item_name(id: any): string;
-        item_type(id: any): string;
-        Item_type(id: any): $$.$mol_text;
+        item_stat(id: any): string;
+        Item_stat(id: any): $$.$mol_text;
         item_desc(id: any): string;
         Item_desc(id: any): $$.$mol_text;
         Item(id: any): $$.$mol_expander;
@@ -3629,6 +3633,7 @@ declare namespace $.$$ {
             }>[];
         }> | undefined;
         author_name(id: any): string;
+        author_stat(id: any): string;
         book_list(id: any): readonly any[];
         get_book(id: string): Readonly<{
             link: string;
@@ -3646,6 +3651,7 @@ declare namespace $.$$ {
             }>[];
         }> | undefined;
         book_name(id: any): string;
+        book_stat(id: any): string;
         items_list(id: any): readonly any[];
         get_item(id: string): Readonly<{
             type: string;
@@ -3656,7 +3662,7 @@ declare namespace $.$$ {
             chapter_link: string;
         }> | undefined;
         item_name(id: any): string;
-        item_type(id: any): string;
+        item_stat(id: any): string;
         item_desc(id: any): string;
     }
 }

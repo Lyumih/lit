@@ -9148,18 +9148,34 @@ var $;
         author_name(id) {
             return "";
         }
+        author_stat(id) {
+            return "";
+        }
+        Author_stat(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.author_stat(id);
+            return obj;
+        }
         book_name(id) {
             return "";
+        }
+        book_stat(id) {
+            return "";
+        }
+        Book_stat(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.book_stat(id);
+            return obj;
         }
         item_name(id) {
             return "";
         }
-        item_type(id) {
+        item_stat(id) {
             return "";
         }
-        Item_type(id) {
+        Item_stat(id) {
             const obj = new this.$.$mol_text();
-            obj.text = () => this.item_type(id);
+            obj.text = () => this.item_stat(id);
             return obj;
         }
         item_desc(id) {
@@ -9173,8 +9189,8 @@ var $;
         Item(id) {
             const obj = new this.$.$mol_expander();
             obj.title = () => this.item_name(id);
+            obj.Tools = () => this.Item_stat(id);
             obj.content = () => [
-                this.Item_type(id),
                 this.Item_desc(id)
             ];
             return obj;
@@ -9192,6 +9208,7 @@ var $;
         Book(id) {
             const obj = new this.$.$mol_expander();
             obj.title = () => this.book_name(id);
+            obj.Tools = () => this.Book_stat(id);
             obj.content = () => [
                 this.Items(id)
             ];
@@ -9210,6 +9227,7 @@ var $;
         Author(id) {
             const obj = new this.$.$mol_expander();
             obj.title = () => this.author_name(id);
+            obj.Tools = () => this.Author_stat(id);
             obj.content = () => [
                 this.Books(id)
             ];
@@ -9237,7 +9255,13 @@ var $;
     ], $lit_app_item.prototype, "Filter_row", null);
     __decorate([
         $mol_mem_key
-    ], $lit_app_item.prototype, "Item_type", null);
+    ], $lit_app_item.prototype, "Author_stat", null);
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_item.prototype, "Book_stat", null);
+    __decorate([
+        $mol_mem_key
+    ], $lit_app_item.prototype, "Item_stat", null);
     __decorate([
         $mol_mem_key
     ], $lit_app_item.prototype, "Item_desc", null);
@@ -9490,7 +9514,11 @@ var $;
                 return this.authors_data().find(author => author.id === id) ?? undefined;
             }
             author_name(id) {
-                return "## " + this.get_author(id)?.name || 'no name';
+                return this.get_author(id)?.name || 'no name';
+            }
+            author_stat(id) {
+                const count_items = this.get_author(id)?.books.reduce((acc, cur) => acc + cur.items.length, 0) || 0;
+                return `📖 ${this.get_author(id)?.books.length || 0} 🏹 ${count_items}`;
             }
             book_list(id) {
                 console.log('book_list', id);
@@ -9505,6 +9533,9 @@ var $;
                 console.log('book_name', id);
                 return this.get_book(id)?.name || 'no name';
             }
+            book_stat(id) {
+                return `🏹 ${this.get_book(id)?.items.length || 0}`;
+            }
             items_list(id) {
                 return this.get_book(id)?.items?.map(item => this.Item(id + '__' + item.id)) ?? [];
             }
@@ -9515,8 +9546,8 @@ var $;
             item_name(id) {
                 return this.get_item(id)?.name || 'no name';
             }
-            item_type(id) {
-                return this.get_item(id)?.type || 'no type';
+            item_stat(id) {
+                return `🪧 ${this.get_item(id)?.type || 'no type'}`;
             }
             item_desc(id) {
                 return this.get_item(id)?.description || 'no description';
