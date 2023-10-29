@@ -9428,36 +9428,11 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$lit_app_item_type_Item = $mol_data_record({
-        id: $mol_data_string,
-        name: $mol_data_string,
-        description: $mol_data_string,
-        type: $mol_data_string,
-        chapter: $mol_data_string,
-        chapter_link: $mol_data_string,
-    });
-    $.$lit_app_item_type_Book = $mol_data_record({
-        id: $mol_data_string,
-        name: $mol_data_string,
-        description: $mol_data_string,
-        link: $mol_data_string,
-        series: $mol_data_string,
-        items: $mol_data_array($.$lit_app_item_type_Item),
-    });
-    $.$lit_app_item_type_Author = $mol_data_record({
-        id: $mol_data_string,
-        name: $mol_data_string,
-        description: $mol_data_string,
-        link: $mol_data_string,
-        books: $mol_data_array($.$lit_app_item_type_Book),
-    });
-    $.$lit_app_item_type_Authors = $mol_data_array($.$lit_app_item_type_Author);
-})($ || ($ = {}));
-(function ($) {
     var $$;
     (function ($$) {
-        class $lit_app_item extends $.$lit_app_item {
-            authors_data() {
+        class $lit_app_item_data extends $.$lit_app_item {
+            static response_author() {
+                console.log('response');
                 return this.$.$lit_app_item_type_Authors([
                     {
                         id: 'a_1',
@@ -9506,6 +9481,47 @@ var $;
                         books: [],
                     }
                 ]);
+            }
+        }
+        $$.$lit_app_item_data = $lit_app_item_data;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//lit/app/item/data.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $.$lit_app_item_type_Item = $mol_data_record({
+        id: $mol_data_string,
+        name: $mol_data_string,
+        description: $mol_data_string,
+        type: $mol_data_string,
+        chapter: $mol_data_string,
+        chapter_link: $mol_data_string,
+    });
+    $.$lit_app_item_type_Book = $mol_data_record({
+        id: $mol_data_string,
+        name: $mol_data_string,
+        description: $mol_data_string,
+        link: $mol_data_string,
+        series: $mol_data_string,
+        items: $mol_data_array($.$lit_app_item_type_Item),
+    });
+    $.$lit_app_item_type_Author = $mol_data_record({
+        id: $mol_data_string,
+        name: $mol_data_string,
+        description: $mol_data_string,
+        link: $mol_data_string,
+        books: $mol_data_array($.$lit_app_item_type_Book),
+    });
+    $.$lit_app_item_type_Authors = $mol_data_array($.$lit_app_item_type_Author);
+})($ || ($ = {}));
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $lit_app_item extends $.$lit_app_item {
+            authors_data() {
+                return this.$.$lit_app_item_data.response_author();
             }
             author_list() {
                 return this.authors_data().map(author => this.Author(author.id));

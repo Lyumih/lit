@@ -2938,6 +2938,32 @@ declare namespace $ {
     };
 }
 
+declare namespace $.$$ {
+    class $lit_app_item_data extends $.$lit_app_item {
+        static response_author(): readonly Readonly<{
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            books: readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                    chapter_link: string;
+                }>[];
+            }>[];
+        }>[];
+    }
+}
+
 declare namespace $ {
     const $lit_app_item_type_Item: ((val: {
         type: string;
