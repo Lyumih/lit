@@ -3,7 +3,7 @@
 	display: block;
 }
 
-[mol_expander_content] [mol_expander_content] {
+[mol_expander] [mol_expander] {
 	box-shadow: 0 0 0 1px var(--mol_theme_line);
 	background: hsla( 0deg , 0% , 50% , .05 );
 }

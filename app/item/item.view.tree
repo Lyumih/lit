@@ -1,7 +1,10 @@
 - Автор => Серия => Книга => Глава => Item
 - Фильтры: скрыть пустые :: все<=>скилы<=>предметы<=>квесты<=>другое
 $lit_app_item $mol_list rows /
-	- <= Filter_row $mol_row sub /
+	<= Filter_row $mol_row sub /
+		<= Toggle_empty $mol_check_box
+			title \Заполненные
+			checked? <=> empty_needed? false
 		<= Item_filter $mol_search
 			hint \Поиск
 			query? <=> search? null

@@ -28,10 +28,23 @@ namespace $ {
 namespace $.$$ {
 	export class $lit_app_item extends $.$lit_app_item {
 
-		authors_data() {
+		authors_data_fetch() {
 			return this.$.$lit_app_item_data.response_author()
 		}
 
+		@$mol_mem
+		authors_data() {
+			console.log(this.empty_needed())
+			let author_filtered = [...this.authors_data_fetch()]
+			if (this.empty_needed()) {
+				author_filtered = author_filtered.filter( author => author.books.length > 0)
+				author_filtered
+			}
+			if (this.search()){
+				author_filtered = author_filtered.filter( author => author.name.toLowerCase().includes(this.search().toLowerCase()) )
+			}
+			return author_filtered
+		}
 
 		author_list(): readonly any[] {
 			return this.authors_data().map( author => this.Author( author.id ) )
