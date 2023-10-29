@@ -8974,6 +8974,103 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_expander extends $mol_list {
+        rows() {
+            return [
+                this.Label(),
+                this.Content()
+            ];
+        }
+        expanded(next) {
+            if (next !== undefined)
+                return next;
+            return false;
+        }
+        expandable() {
+            return true;
+        }
+        label() {
+            return [
+                this.title()
+            ];
+        }
+        Trigger() {
+            const obj = new this.$.$mol_check_expand();
+            obj.checked = (next) => this.expanded(next);
+            obj.expandable = () => this.expandable();
+            obj.label = () => this.label();
+            return obj;
+        }
+        Tools() {
+            return null;
+        }
+        Label() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.Trigger(),
+                this.Tools()
+            ];
+            return obj;
+        }
+        content() {
+            return [];
+        }
+        Content() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.content();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_expander.prototype, "expanded", null);
+    __decorate([
+        $mol_mem
+    ], $mol_expander.prototype, "Trigger", null);
+    __decorate([
+        $mol_mem
+    ], $mol_expander.prototype, "Label", null);
+    __decorate([
+        $mol_mem
+    ], $mol_expander.prototype, "Content", null);
+    $.$mol_expander = $mol_expander;
+})($ || ($ = {}));
+//mol/expander/-view.tree/expander.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_expander extends $.$mol_expander {
+            rows() {
+                return [
+                    this.Label(),
+                    ...this.expanded() ? [this.Content()] : []
+                ];
+            }
+            expandable() {
+                return this.content().length > 0;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_expander.prototype, "rows", null);
+        $$.$mol_expander = $mol_expander;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//mol/expander/expander.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/expander/expander.view.css", "[mol_expander] {\n\tflex-direction: column;\n}\n\n[mol_expander_label] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tborder-radius: var(--mol_gap_round);\n}\n\n[mol_expander_trigger] {\n\tflex: auto;\n\tposition: relative;\n}\n");
+})($ || ($ = {}));
+//mol/expander/-css/expander.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_text_list extends $mol_text {
         auto_scroll() {
             return null;
@@ -9051,18 +9148,11 @@ var $;
         author_name(id) {
             return "";
         }
-        Author_name(id) {
-            const obj = new this.$.$mol_text();
-            obj.text = () => this.author_name(id);
-            return obj;
-        }
         book_name(id) {
             return "";
         }
-        Book_name(id) {
-            const obj = new this.$.$mol_text();
-            obj.text = () => this.book_name(id);
-            return obj;
+        item_name(id) {
+            return "";
         }
         item_type(id) {
             return "";
@@ -9070,14 +9160,6 @@ var $;
         Item_type(id) {
             const obj = new this.$.$mol_text();
             obj.text = () => this.item_type(id);
-            return obj;
-        }
-        item_name(id) {
-            return "";
-        }
-        Item_name(id) {
-            const obj = new this.$.$mol_text();
-            obj.text = () => this.item_name(id);
             return obj;
         }
         item_desc(id) {
@@ -9089,10 +9171,10 @@ var $;
             return obj;
         }
         Item(id) {
-            const obj = new this.$.$mol_list();
-            obj.rows = () => [
+            const obj = new this.$.$mol_expander();
+            obj.title = () => this.item_name(id);
+            obj.content = () => [
                 this.Item_type(id),
-                this.Item_name(id),
                 this.Item_desc(id)
             ];
             return obj;
@@ -9108,9 +9190,9 @@ var $;
             return obj;
         }
         Book(id) {
-            const obj = new this.$.$mol_list();
-            obj.rows = () => [
-                this.Book_name(id),
+            const obj = new this.$.$mol_expander();
+            obj.title = () => this.book_name(id);
+            obj.content = () => [
                 this.Items(id)
             ];
             return obj;
@@ -9126,9 +9208,9 @@ var $;
             return obj;
         }
         Author(id) {
-            const obj = new this.$.$mol_list();
-            obj.rows = () => [
-                this.Author_name(id),
+            const obj = new this.$.$mol_expander();
+            obj.title = () => this.author_name(id);
+            obj.content = () => [
                 this.Books(id)
             ];
             return obj;
@@ -9155,16 +9237,7 @@ var $;
     ], $lit_app_item.prototype, "Filter_row", null);
     __decorate([
         $mol_mem_key
-    ], $lit_app_item.prototype, "Author_name", null);
-    __decorate([
-        $mol_mem_key
-    ], $lit_app_item.prototype, "Book_name", null);
-    __decorate([
-        $mol_mem_key
     ], $lit_app_item.prototype, "Item_type", null);
-    __decorate([
-        $mol_mem_key
-    ], $lit_app_item.prototype, "Item_name", null);
     __decorate([
         $mol_mem_key
     ], $lit_app_item.prototype, "Item_desc", null);
@@ -9385,11 +9458,11 @@ var $;
                                     },
                                     {
                                         id: 'i_1_1_2',
-                                        name: "владение копьём",
-                                        description: 'описание',
+                                        name: "Стрельба из лука",
+                                        description: 'Стрельба из лука\nРанг: F.\nТип: навык.\nУровень: 1/5.\nОписание:\n— Навык стрельбы из лука, взятый у одного из гоблинских племен.\nНасыщение:\n0/10 ОС',
                                         type: 'skill',
-                                        chapter: '1',
-                                        chapter_link: 'https://author.today/reader/17501/622184'
+                                        chapter: '3',
+                                        chapter_link: 'https://author.today/reader/17501/622188'
                                     },
                                 ]
                             }, {

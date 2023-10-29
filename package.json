@@ -203,6 +203,7 @@
     "$mol_embed_youtube",
     "$mol_icon_youtube",
     "$mol_frame",
+    "$mol_expander",
     "$mol_data_record",
     "$mol_data",
     "$mol_data_value",

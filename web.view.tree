@@ -622,6 +622,19 @@ $mol_text_span $mol_paragraph
 		^
 		mol_text_type <= type \
 
+$mol_expander $mol_list
+	rows /
+		<= Label $mol_view
+			sub /
+				<= Trigger $mol_check_expand
+					checked? <=> expanded? false
+					expandable <= expandable true
+					label <= label /
+						<= title
+				<= Tools null
+		<= Content $mol_list
+			rows <= content /
+
 $mol_text_list $mol_text
 	auto_scroll null
 	attr *
@@ -643,28 +656,19 @@ $lit_app_item $mol_list rows /
 			hint \Поиск
 			query? <=> search? null
 	<= Authors $mol_list rows <= author_list /
-		<= Author*0 $mol_list rows /
-			<= Author_name* $mol_text text <= author_name* \
-			<= Books* $mol_list rows <= book_list* /
-				<= Book*1 $mol_list rows /
-					<= Book_name* $mol_text text <= book_name* \
-					<= Items* $mol_list rows <= items_list* /
-						<= Item*2 $mol_list rows /
-							<= Item_type* $mol_text text <= item_type* \
-							<= Item_name* $mol_text text <= item_name* \
-							<= Item_desc* $mol_text text <= item_desc* \
-	- <= Book $mol_text text \Книга: Real-Rpg. Город гоблинов
-	- <= Skill_list $mol_list rows <= skill_list /
-		<= Skill*0 $mol_list rows /
-			<= Skill_name* $mol_text text <= skill_name* \
-			<= Skill_desc* $mol_text text <= skill_desc* \
-			<= Author* $mol_row sub /
-				<= Skill_book* $mol_link
-					title <= skill_book* \
-					uri <= skill_book_link* \
-				<= Skill_author* $mol_link
-					title <= skill_author* \
-					uri <= skill_author_link* \
+		<= Author*0 $mol_expander
+			title <= author_name* \
+			content /
+				<= Books* $mol_list rows <= book_list* /
+					<= Book*1 $mol_expander
+						title <= book_name* \
+						content /
+							<= Items* $mol_list rows <= items_list* /
+								<= Item*2 $mol_expander
+									title <= item_name* \
+									content /
+										<= Item_type* $mol_text text <= item_type* \
+										<= Item_desc* $mol_text text <= item_desc* \
 
 $lit_app $mol_page
 	title \LitRPG База Данных

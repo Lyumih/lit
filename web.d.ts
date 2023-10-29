@@ -2685,6 +2685,30 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_expander extends $mol_list {
+        rows(): readonly any[];
+        expanded(next?: any): boolean;
+        expandable(): boolean;
+        label(): readonly any[];
+        Trigger(): $$.$mol_check_expand;
+        Tools(): any;
+        Label(): $mol_view;
+        content(): readonly any[];
+        Content(): $$.$mol_list;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_expander extends $.$mol_expander {
+        rows(): $mol_view[];
+        expandable(): boolean;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_text_list extends $mol_text {
         auto_scroll(): any;
         attr(): Record<string, any>;
@@ -2707,22 +2731,19 @@ declare namespace $ {
         Item_filter(): $$.$mol_search;
         Filter_row(): $mol_row;
         author_name(id: any): string;
-        Author_name(id: any): $$.$mol_text;
         book_name(id: any): string;
-        Book_name(id: any): $$.$mol_text;
+        item_name(id: any): string;
         item_type(id: any): string;
         Item_type(id: any): $$.$mol_text;
-        item_name(id: any): string;
-        Item_name(id: any): $$.$mol_text;
         item_desc(id: any): string;
         Item_desc(id: any): $$.$mol_text;
-        Item(id: any): $$.$mol_list;
+        Item(id: any): $$.$mol_expander;
         items_list(id: any): readonly any[];
         Items(id: any): $$.$mol_list;
-        Book(id: any): $$.$mol_list;
+        Book(id: any): $$.$mol_expander;
         book_list(id: any): readonly any[];
         Books(id: any): $$.$mol_list;
-        Author(id: any): $$.$mol_list;
+        Author(id: any): $$.$mol_expander;
         author_list(): readonly any[];
         Authors(): $$.$mol_list;
     }
