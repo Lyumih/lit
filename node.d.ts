@@ -1604,18 +1604,63 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_icon_tick extends $mol_icon {
-        path(): string;
+    class $mol_check_list extends $mol_view {
+        dictionary(): Record<string, any>;
+        Option(id: any): $$.$mol_check;
+        options(): Record<string, any>;
+        keys(): readonly string[];
+        sub(): readonly $mol_check[];
+        option_checked(id: any, next?: any): boolean;
+        option_title(id: any): string;
+        option_label(id: any): readonly any[];
+        enabled(): boolean;
+        option_enabled(id: any): boolean;
+        option_hint(id: any): string;
+        items(): readonly $mol_check[];
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_check_list extends $.$mol_check_list {
+        options(): {
+            [key: string]: string;
+        };
+        dictionary(next?: Record<string, boolean>): Record<string, boolean>;
+        option_checked(id: string, next?: boolean | null): boolean;
+        keys(): readonly string[];
+        items(): $mol_check[];
+        option_title(key: string): string;
     }
 }
 
 declare namespace $ {
-    class $mol_check_box extends $mol_check {
-        Icon(): $mol_icon_tick;
+}
+
+declare namespace $ {
+    class $mol_switch extends $mol_check_list {
+        value(next?: any): string;
     }
 }
 
 declare namespace $ {
+    class $mol_state_session<Value> extends $mol_object {
+        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+        static native(): Storage | {
+            getItem(key: string): any;
+            setItem(key: string, value: string): void;
+            removeItem(key: string): void;
+        };
+        static value<Value>(key: string, next?: Value): Value;
+        prefix(): string;
+        value(key: string, next?: Value): Value;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_switch extends $.$mol_switch {
+        value(next?: any): any;
+        option_checked(key: string, next?: boolean): boolean;
+    }
 }
 
 declare namespace $ {
@@ -2433,20 +2478,6 @@ declare namespace $ {
     }
 }
 
-declare namespace $ {
-    class $mol_state_session<Value> extends $mol_object {
-        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
-        static native(): Storage | {
-            getItem(key: string): any;
-            setItem(key: string, value: string): void;
-            removeItem(key: string): void;
-        };
-        static value<Value>(key: string, next?: Value): Value;
-        prefix(): string;
-        value(key: string, next?: Value): Value;
-    }
-}
-
 declare namespace $.$$ {
     interface $mol_grid_node {
         id: string;
@@ -2872,9 +2903,9 @@ declare namespace $ {
 declare namespace $ {
     class $lit_app_item extends $mol_list {
         rows(): readonly any[];
-        empty_needed(next?: any): boolean;
-        Toggle_empty(): $mol_check_box;
-        search(next?: any): any;
+        type(next?: any): string;
+        Type_switch(): $$.$mol_switch;
+        search(next?: any): string;
         Item_filter(): $$.$mol_search;
         Filter_row(): $mol_row;
         author_name(id: any): string;
@@ -3667,18 +3698,9 @@ declare namespace $.$$ {
                 }>[];
             }>[];
         }>[];
-        authors_data(): Readonly<{
-            link: string;
-            name: string;
-            id: string;
-            description: string;
-            books: readonly Readonly<{
-                link: string;
-                name: string;
-                id: string;
-                description: string;
-                series: string;
-                items: readonly Readonly<{
+        authors_data(): {
+            books: {
+                items: Readonly<{
                     type: string;
                     link: string;
                     name: string;
@@ -3686,21 +3708,21 @@ declare namespace $.$$ {
                     description: string;
                     chapter: string;
                 }>[];
-            }>[];
-        }>[];
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+            }[];
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+        }[];
         author_list(): readonly any[];
-        get_author(id: string): Readonly<{
-            link: string;
-            name: string;
-            id: string;
-            description: string;
-            books: readonly Readonly<{
-                link: string;
-                name: string;
-                id: string;
-                description: string;
-                series: string;
-                items: readonly Readonly<{
+        get_author(id: string): {
+            books: {
+                items: Readonly<{
                     type: string;
                     link: string;
                     name: string;
@@ -3708,19 +3730,23 @@ declare namespace $.$$ {
                     description: string;
                     chapter: string;
                 }>[];
-            }>[];
-        }> | undefined;
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+            }[];
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+        } | undefined;
         author_name(id: any): string;
         author_stat(id: any): string;
         author_link(id: any): string;
         book_list(id: any): readonly any[];
-        get_book(id: string): Readonly<{
-            link: string;
-            name: string;
-            id: string;
-            description: string;
-            series: string;
-            items: readonly Readonly<{
+        get_book(id: string): {
+            items: Readonly<{
                 type: string;
                 link: string;
                 name: string;
@@ -3728,7 +3754,12 @@ declare namespace $.$$ {
                 description: string;
                 chapter: string;
             }>[];
-        }> | undefined;
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            series: string;
+        } | undefined;
         book_name(id: any): string;
         book_stat(id: any): string;
         book_link(id: any): string;
