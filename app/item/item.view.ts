@@ -28,21 +28,29 @@ namespace $ {
 namespace $.$$ {
 	export class $lit_app_item extends $.$lit_app_item {
 
+		@$mol_mem
 		authors_data_fetch() {
 			return this.$.$lit_app_item_data.response_author()
 		}
 
 		@$mol_mem
 		authors_data() {
-			console.log(this.empty_needed())
-			let author_filtered = [...this.authors_data_fetch()]
-			if (this.empty_needed()) {
-				author_filtered = author_filtered.filter( author => author.books.length > 0)
-				author_filtered
-			}
-			if (this.search()){
-				author_filtered = author_filtered.filter( author => author.name.toLowerCase().includes(this.search().toLowerCase()) )
-			}
+			const author_filtered = this.authors_data_fetch().map( author => ( {
+				...author,
+				books: author.books.map( book => ( {
+					...book,
+					items: book.items.filter( item => {
+						if( this.search() ) {
+							return item.description?.toLocaleLowerCase().includes( this.search().toLocaleLowerCase() )
+						}
+						if ( this.type() ) {
+							return item.type === this.type()
+						}
+						return true
+					} )
+				} ) )
+			} ) )
+
 			return author_filtered
 		}
 
@@ -59,7 +67,7 @@ namespace $.$$ {
 		}
 
 		author_stat( id: any ): string {
-			const count_items = this.get_author( id )?.books.reduce( ( acc, cur ) => acc + cur.items.length, 0 ) || 0
+			const count_items = this.get_author( id )?.books.reduce( ( acc, cur ) => acc + cur.items?.length, 0 ) || 0
 			return `📖 ${ this.get_author( id )?.books.length || 0 } 🏹 ${ count_items }`
 		}
 
@@ -68,24 +76,20 @@ namespace $.$$ {
 		}
 
 		book_list( id: any ): readonly any[] {
-			console.log( 'book_list', id )
 			return this.get_author( id )?.books?.map( book => this.Book( id + '__' + book.id ) ) ?? []
 		}
 
 		get_book( id: string ) {
 			const [ author_id, book_id ] = id.split( '__' )
-			console.log( 'book', id, author_id, book_id )
 			return this.get_author( author_id )?.books?.find( book => book.id === book_id )
 		}
 
 		book_name( id: any ): string {
-			console.log( 'book_name', id )
-
 			return this.get_book( id )?.name || 'no name'
 		}
 
 		book_stat( id: any ): string {
-			return `🏹 ${ this.get_book( id )?.items.length || 0 }`
+			return `🏹 ${ this.get_book( id )?.items?.length || 0 }`
 		}
 
 		book_link( id: any ): string {
