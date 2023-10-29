@@ -2,5 +2,10 @@ $lit_app $mol_page
 	title \LitRPG База Данных
 	attr *
 		mol_theme \$mol_theme_light
+	tools /
+		<= Telegram $mol_link
+			sub / <= Telegram_icon $mol_icon_telegram
+			uri \https://t.me/h_y_o_o/4484
+		<= GitHub $mol_link_source uri \https://github.com/Lyumih/lit
 	body /
 		<= Item $lit_app_item
