@@ -5,7 +5,7 @@ namespace $ {
 		description: $mol_data_string,
 		type: $mol_data_string,
 		chapter: $mol_data_string,
-		chapter_link: $mol_data_string,
+		link: $mol_data_string,
 	} )
 	export const $lit_app_item_type_Book = $mol_data_record( {
 		id: $mol_data_string,
@@ -50,6 +50,10 @@ namespace $.$$ {
 			return `📖 ${ this.get_author( id )?.books.length || 0 } 🏹 ${ count_items }`
 		}
 
+		author_link( id: any ): string {
+			return this.get_author( id )?.link || 'no link'
+		}
+
 		book_list( id: any ): readonly any[] {
 			console.log( 'book_list', id )
 			return this.get_author( id )?.books?.map( book => this.Book( id + '__' + book.id ) ) ?? []
@@ -71,6 +75,10 @@ namespace $.$$ {
 			return `🏹 ${ this.get_book( id )?.items.length || 0 }`
 		}
 
+		book_link( id: any ): string {
+			return this.get_book( id )?.link || 'no link'
+		}
+
 		items_list( id: any ): readonly any[] {
 			return this.get_book( id )?.items?.map( item => this.Item( id + '__' + item.id ) ) ?? []
 		}
@@ -86,6 +94,10 @@ namespace $.$$ {
 
 		item_stat( id: any ): string {
 			return `🪧 ${ this.get_item( id )?.type || 'no type' }`
+		}
+
+		item_link( id: any ): string {
+			return this.get_item( id )?.link || 'no link'
 		}
 
 		item_desc( id: any ) {
