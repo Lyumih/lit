@@ -1,5 +1,9 @@
-[lit_app_item_author], [lit_app_item_book], [lit_app_item_item] {
-	border: 2px solid grey;
-	border-radius: 2rem;
-	padding: 1rem;
+[mol_expander_content] {
+	padding-left: 2.25rem;
+	display: block;
+}
+
+[mol_expander_content] [mol_expander_content] {
+	box-shadow: 0 0 0 1px var(--mol_theme_line);
+	background: hsla( 0deg , 0% , 50% , .05 );
 }
