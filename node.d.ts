@@ -1395,306 +1395,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_paragraph extends $mol_view {
-        line_height(): number;
-        letter_width(): number;
-        width_limit(): number;
-        row_width(): number;
-        sub(): readonly any[];
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_paragraph extends $.$mol_paragraph {
-        maximal_width(): number;
-        width_limit(): number;
-        minimal_width(): number;
-        row_width(): number;
-        minimal_height(): number;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_stack extends $mol_view {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_dimmer extends $mol_paragraph {
-        haystack(): string;
-        needle(): string;
-        sub(): readonly $mol_view_content[];
-        Low(id: any): $$.$mol_paragraph;
-        High(id: any): $$.$mol_paragraph;
-        parts(): readonly $mol_view_content[];
-        string(id: any): string;
-    }
-}
-
-declare namespace $ {
-    type $mol_type_equals<A, B> = (<X>() => X extends A ? 1 : 2) extends (<X>() => X extends B ? 1 : 2) ? unknown : never;
-}
-
-declare namespace $ {
-    type $mol_type_merge<Intersection> = Intersection extends (...a: any[]) => any ? Intersection : Intersection extends new (...a: any[]) => any ? Intersection : Intersection extends object ? $mol_type_merge_object<Intersection> extends Intersection ? unknown extends $mol_type_equals<$mol_type_merge_object<Intersection>, Intersection> ? Intersection : {
-        [Key in keyof Intersection]: $mol_type_merge<Intersection[Key]>;
-    } : Intersection : Intersection;
-    type $mol_type_merge_object<Intersection> = {
-        [Key in keyof Intersection]: Intersection[Key];
-    };
-}
-
-declare namespace $ {
-    type $mol_type_intersect<Union> = (Union extends any ? (_: Union) => void : never) extends ((_: infer Intersection) => void) ? Intersection : never;
-}
-
-declare namespace $ {
-    type $mol_unicode_category = [$mol_unicode_category_binary] | ['General_Category', $mol_char_category_general] | ['Script', $mol_unicode_category_script] | ['Script_Extensions', $mol_unicode_category_script];
-    type $mol_unicode_category_binary = 'ASCII' | 'ASCII_Hex_Digit' | 'Alphabetic' | 'Any' | 'Assigned' | 'Bidi_Control' | 'Bidi_Mirrored' | 'Case_Ignorable' | 'Cased' | 'Changes_When_Casefolded' | 'Changes_When_Casemapped' | 'Changes_When_Lowercased' | 'Changes_When_NFKC_Casefolded' | 'Changes_When_Titlecased' | 'Changes_When_Uppercased' | 'Dash' | 'Default_Ignorable_Code_Point' | 'Deprecated' | 'Diacritic' | 'Emoji' | 'Emoji_Component' | 'Emoji_Modifier' | 'Emoji_Modifier_Base' | 'Emoji_Presentation' | 'Extended_Pictographic' | 'Extender' | 'Grapheme_Base' | 'Grapheme_Extend' | 'Hex_Digit' | 'IDS_Binary_Operator' | 'IDS_Trinary_Operator' | 'ID_Continue' | 'ID_Start' | 'Ideographic' | 'Join_Control' | 'Logical_Order_Exception' | 'Lowercase' | 'Math' | 'Noncharacter_Code_Point' | 'Pattern_Syntax' | 'Pattern_White_Space' | 'Quotation_Mark' | 'Radical' | 'Regional_Indicator' | 'Sentence_Terminal' | 'Soft_Dotted' | 'Terminal_Punctuation' | 'Unified_Ideograph' | 'Uppercase' | 'Variation_Selector' | 'White_Space' | 'XID_Continue' | 'XID_Start';
-    type $mol_char_category_general = 'Cased_Letter' | 'Close_Punctuation' | 'Connector_Punctuation' | 'Control' | 'Currency_Symbol' | 'Dash_Punctuation' | 'Decimal_Number' | 'Enclosing_Mark' | 'Final_Punctuation' | 'Format' | 'Initial_Punctuation' | 'Letter' | 'Letter_Number' | 'Line_Separator' | 'Lowercase_Letter' | 'Mark' | 'Math_Symbol' | 'Modifier_Letter' | 'Modifier_Symbol' | 'Nonspacing_Mark' | 'Number' | 'Open_Punctuation' | 'Other' | 'Other_Letter' | 'Other_Number' | 'Other_Punctuation' | 'Other_Symbol' | 'Paragraph_Separator' | 'Private_Use' | 'Punctuation' | 'Separator' | 'Space_Separator' | 'Spacing_Mark' | 'Surrogate' | 'Symbol' | 'Titlecase_Letter' | 'Unassigned' | 'Uppercase_Letter';
-    type $mol_unicode_category_script = 'Adlam' | 'Ahom' | 'Anatolian_Hieroglyphs' | 'Arabic' | 'Armenian' | 'Avestan' | 'Balinese' | 'Bamum' | 'Bassa_Vah' | 'Batak' | 'Bengali' | 'Bhaiksuki' | 'Bopomofo' | 'Brahmi' | 'Braille' | 'Buginese' | 'Buhid' | 'Canadian_Aboriginal' | 'Carian' | 'Caucasian_Albanian' | 'Chakma' | 'Cham' | 'Chorasmian' | 'Cherokee' | 'Common' | 'Coptic' | 'Cuneiform' | 'Cypriot' | 'Cyrillic' | 'Deseret' | 'Devanagari' | 'Dives_Akuru' | 'Dogra' | 'Duployan' | 'Egyptian_Hieroglyphs' | 'Elbasan' | 'Elymaic' | 'Ethiopic' | 'Georgian' | 'Glagolitic' | 'Gothic' | 'Grantha' | 'Greek' | 'Gujarati' | 'Gunjala_Gondi' | 'Gurmukhi' | 'Han' | 'Hangul' | 'Hanifi_Rohingya' | 'Hanunoo' | 'Hatran' | 'Hebrew' | 'Hiragana' | 'Imperial_Aramaic' | 'Inherited' | 'Inscriptional_Pahlavi' | 'Inscriptional_Parthian' | 'Javanese' | 'Kaithi' | 'Kannada' | 'Katakana' | 'Kayah_Li' | 'Kharoshthi' | 'Khitan_Small_Script' | 'Khmer' | 'Khojki' | 'Khudawadi' | 'Lao' | 'Latin' | 'Lepcha' | 'Limbu' | 'Linear_A' | 'Linear_B' | 'Lisu' | 'Lycian' | 'Lydian' | 'Mahajani' | 'Makasar' | 'Malayalam' | 'Mandaic' | 'Manichaean' | 'Marchen' | 'Medefaidrin' | 'Masaram_Gondi' | 'Meetei_Mayek' | 'Mende_Kikakui' | 'Meroitic_Cursive' | 'Meroitic_Hieroglyphs' | 'Miao' | 'Modi' | 'Mongolian' | 'Mro' | 'Multani' | 'Myanmar' | 'Nabataean' | 'Nandinagari' | 'New_Tai_Lue' | 'Newa' | 'Nko' | 'Nushu' | 'Nyiakeng_Puachue_Hmong' | 'Ogham' | 'Ol_Chiki' | 'Old_Hungarian' | 'Old_Italic' | 'Old_North_Arabian' | 'Old_Permic' | 'Old_Persian' | 'Old_Sogdian' | 'Old_South_Arabian' | 'Old_Turkic' | 'Oriya' | 'Osage' | 'Osmanya' | 'Pahawh_Hmong' | 'Palmyrene' | 'Pau_Cin_Hau' | 'Phags_Pa' | 'Phoenician' | 'Psalter_Pahlavi' | 'Rejang' | 'Runic' | 'Samaritan' | 'Saurashtra' | 'Sharada' | 'Shavian' | 'Siddham' | 'SignWriting' | 'Sinhala' | 'Sogdian' | 'Sora_Sompeng' | 'Soyombo' | 'Sundanese' | 'Syloti_Nagri' | 'Syriac' | 'Tagalog' | 'Tagbanwa' | 'Tai_Le' | 'Tai_Tham' | 'Tai_Viet' | 'Takri' | 'Tamil' | 'Tangut' | 'Telugu' | 'Thaana' | 'Thai' | 'Tibetan' | 'Tifinagh' | 'Tirhuta' | 'Ugaritic' | 'Vai' | 'Wancho' | 'Warang_Citi' | 'Yezidi' | 'Yi' | 'Zanabazar_Square';
-}
-
-interface String {
-    match<RE extends RegExp>(regexp: RE): ReturnType<RE[typeof Symbol.match]>;
-    matchAll<RE extends RegExp>(regexp: RE): ReturnType<RE[typeof Symbol.matchAll]>;
-}
-declare namespace $ {
-    type Groups_to_params<T> = {
-        [P in keyof T]?: T[P] | boolean | undefined;
-    };
-    export type $mol_regexp_source = number | string | RegExp | {
-        [key in string]: $mol_regexp_source;
-    } | readonly [$mol_regexp_source, ...$mol_regexp_source[]];
-    export type $mol_regexp_groups<Source extends $mol_regexp_source> = Source extends number ? {} : Source extends string ? {} : Source extends $mol_regexp_source[] ? $mol_type_merge<$mol_type_intersect<{
-        [key in Extract<keyof Source, number>]: $mol_regexp_groups<Source[key]>;
-    }[Extract<keyof Source, number>]>> : Source extends RegExp ? Record<string, string> extends NonNullable<NonNullable<ReturnType<Source['exec']>>['groups']> ? {} : NonNullable<NonNullable<ReturnType<Source['exec']>>['groups']> : Source extends {
-        readonly [key in string]: $mol_regexp_source;
-    } ? $mol_type_merge<$mol_type_intersect<{
-        [key in keyof Source]: $mol_type_merge<$mol_type_override<{
-            readonly [k in Extract<keyof Source, string>]: string;
-        }, {
-            readonly [k in key]: Source[key] extends string ? Source[key] : string;
-        }> & $mol_regexp_groups<Source[key]>>;
-    }[keyof Source]>> : never;
-    export class $mol_regexp<Groups extends Record<string, string>> extends RegExp {
-        readonly groups: (Extract<keyof Groups, string>)[];
-        constructor(source: string, flags?: string, groups?: (Extract<keyof Groups, string>)[]);
-        [Symbol.matchAll](str: string): IterableIterator<RegExpMatchArray & $mol_type_override<RegExpMatchArray, {
-            groups?: {
-                [key in keyof Groups]: string;
-            };
-        }>>;
-        [Symbol.match](str: string): null | RegExpMatchArray;
-        [Symbol.split](str: string): string[];
-        test(str: string): boolean;
-        exec(str: string): RegExpExecArray & $mol_type_override<RegExpExecArray, {
-            groups?: {
-                [key in keyof Groups]: string;
-            };
-        }> | null;
-        generate(params: Groups_to_params<Groups>): string | null;
-        get native(): RegExp;
-        static repeat<Source extends $mol_regexp_source>(source: Source, min?: number, max?: number): $mol_regexp<$mol_regexp_groups<Source>>;
-        static repeat_greedy<Source extends $mol_regexp_source>(source: Source, min?: number, max?: number): $mol_regexp<$mol_regexp_groups<Source>>;
-        static vary<Sources extends readonly $mol_regexp_source[]>(sources: Sources): $mol_regexp<$mol_regexp_groups<Sources[number]>>;
-        static optional<Source extends $mol_regexp_source>(source: Source): $mol_regexp<$mol_regexp_groups<Source>>;
-        static force_after(source: $mol_regexp_source): $mol_regexp<Record<string, string>>;
-        static forbid_after(source: $mol_regexp_source): $mol_regexp<Record<string, string>>;
-        static from<Source extends $mol_regexp_source>(source: Source, { ignoreCase, multiline }?: Partial<Pick<RegExp, 'ignoreCase' | 'multiline'>>): $mol_regexp<$mol_regexp_groups<Source>>;
-        static unicode_only(...category: $mol_unicode_category): $mol_regexp<Record<string, string>>;
-        static unicode_except(...category: $mol_unicode_category): $mol_regexp<Record<string, string>>;
-        static char_range(from: number, to: number): $mol_regexp<{}>;
-        static char_only(...allowed: readonly [$mol_regexp_source, ...$mol_regexp_source[]]): $mol_regexp<{}>;
-        static char_except(...forbidden: readonly [$mol_regexp_source, ...$mol_regexp_source[]]): $mol_regexp<{}>;
-        static decimal_only: $mol_regexp<{}>;
-        static decimal_except: $mol_regexp<{}>;
-        static latin_only: $mol_regexp<{}>;
-        static latin_except: $mol_regexp<{}>;
-        static space_only: $mol_regexp<{}>;
-        static space_except: $mol_regexp<{}>;
-        static word_break_only: $mol_regexp<{}>;
-        static word_break_except: $mol_regexp<{}>;
-        static tab: $mol_regexp<{}>;
-        static slash_back: $mol_regexp<{}>;
-        static nul: $mol_regexp<{}>;
-        static char_any: $mol_regexp<{}>;
-        static begin: $mol_regexp<{}>;
-        static end: $mol_regexp<{}>;
-        static or: $mol_regexp<{}>;
-        static line_end: $mol_regexp<{
-            readonly win_end: string;
-            readonly mac_end: string;
-        }>;
-    }
-    export {};
-}
-
-declare namespace $.$$ {
-    class $mol_dimmer extends $.$mol_dimmer {
-        parts(): any[];
-        strings(): string[];
-        string(index: number): string;
-        view_find(check: (path: $mol_view, text?: string) => boolean, path?: $mol_view[]): Generator<$mol_view[]>;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_text_code_token extends $mol_dimmer {
-        attr(): Record<string, any>;
-        type(): string;
-    }
-    class $mol_text_code_token_link extends $mol_text_code_token {
-        dom_name(): string;
-        type(): string;
-        attr(): Record<string, any>;
-        uri(): string;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
-    class $mol_text_code_row extends $mol_paragraph {
-        text(): string;
-        minimal_height(): number;
-        numb_showed(): boolean;
-        syntax(): any;
-        uri_resolve(id: any): string;
-        Numb(): $mol_view;
-        Token(id: any): $mol_text_code_token;
-        Token_link(id: any): $mol_text_code_token_link;
-        find_pos(id: any): any;
-        numb(): number;
-        token_type(id: any): string;
-        token_text(id: any): string;
-        highlight(): string;
-        token_uri(id: any): string;
-    }
-}
-
-declare namespace $ {
-    class $mol_syntax2<Lexems extends {
-        [name: string]: RegExp;
-    }> {
-        lexems: Lexems;
-        constructor(lexems: Lexems);
-        rules: {
-            regExp: RegExp;
-            name: string;
-            size: number;
-        }[];
-        regexp: RegExp;
-        tokenize(text: string, handle: (name: string, found: string, chunks: string[], offset: number) => void): void;
-        parse(text: string, handlers: {
-            [key in keyof Lexems | '']: (found: string, chunks: string[], offset: number) => void;
-        }): void;
-    }
-}
-
-declare namespace $ {
-    var $mol_syntax2_md_flow: $mol_syntax2<{
-        quote: RegExp;
-        header: RegExp;
-        list: RegExp;
-        code: RegExp;
-        'code-indent': RegExp;
-        table: RegExp;
-        grid: RegExp;
-        cut: RegExp;
-        block: RegExp;
-    }>;
-    var $mol_syntax2_md_line: $mol_syntax2<{
-        strong: RegExp;
-        emphasis: RegExp;
-        code: RegExp;
-        insert: RegExp;
-        delete: RegExp;
-        embed: RegExp;
-        link: RegExp;
-        'image-link': RegExp;
-        'text-link': RegExp;
-        'text-link-http': RegExp;
-    }>;
-    const $mol_syntax2_md_code: $mol_syntax2<{
-        'code-indent': RegExp;
-        'code-docs': RegExp;
-        'code-comment-block': RegExp;
-        'code-link': RegExp;
-        'code-comment-inline': RegExp;
-        'code-string': RegExp;
-        'code-number': RegExp;
-        'code-call': RegExp;
-        'code-sexpr': RegExp;
-        'code-field': RegExp;
-        'code-keyword': RegExp;
-        'code-global': RegExp;
-        'code-word': RegExp;
-        'code-decorator': RegExp;
-        'code-tag': RegExp;
-        'code-punctuation': RegExp;
-    }>;
-}
-
-declare namespace $.$$ {
-    class $mol_text_code_row extends $.$mol_text_code_row {
-        maximal_width(): number;
-        syntax(): $mol_syntax2<{
-            'code-indent': RegExp;
-            'code-docs': RegExp;
-            'code-comment-block': RegExp;
-            'code-link': RegExp;
-            'code-comment-inline': RegExp;
-            'code-string': RegExp;
-            'code-number': RegExp;
-            'code-call': RegExp;
-            'code-sexpr': RegExp;
-            'code-field': RegExp;
-            'code-keyword': RegExp;
-            'code-global': RegExp;
-            'code-word': RegExp;
-            'code-decorator': RegExp;
-            'code-tag': RegExp;
-            'code-punctuation': RegExp;
-        }>;
-        tokens(path: number[]): readonly {
-            name: string;
-            found: string;
-            chunks: string[];
-        }[];
-        sub(): $mol_view[];
-        row_content(path: number[]): $mol_text_code_token[];
-        Token(path: number[]): $mol_text_code_token;
-        token_type(path: number[]): string;
-        token_content(path: number[]): (string | $mol_text_code_token)[];
-        token_text(path: number[]): string;
-        token_uri(path: number[]): string;
-        view_find(check: (path: $mol_view, text?: string) => boolean, path?: $mol_view[]): Generator<$mol_view[]>;
-        find_pos(offset: number): {
-            token: $mol_text_code_token;
-            offset: number;
-        } | null;
-        find_token_pos([offset, ...path]: number[]): {
-            token: $mol_text_code_token;
-            offset: number;
-        } | null;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
     class $mol_speck extends $mol_view {
         attr(): Record<string, any>;
         style(): Record<string, any>;
@@ -1874,6 +1574,669 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_check extends $mol_button_minor {
+        attr(): Record<string, any>;
+        sub(): readonly $mol_view_content[];
+        checked(next?: any): boolean;
+        aria_checked(): string;
+        aria_role(): string;
+        Icon(): any;
+        title(): string;
+        Title(): $mol_view;
+        label(): readonly any[];
+    }
+}
+
+declare namespace $ {
+    function $mol_maybe<Value>(value: Value | null | undefined): Value[];
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_check extends $.$mol_check {
+        click(next?: Event): void;
+        sub(): readonly $mol_view_content[];
+        label(): readonly any[];
+        aria_checked(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_tick extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_check_box extends $mol_check {
+        Icon(): $mol_icon_tick;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_pop extends $mol_view {
+        showed(next?: any): boolean;
+        align_vert(): string;
+        align_hor(): string;
+        prefer(): string;
+        sub(): readonly any[];
+        sub_visible(): readonly any[];
+        Anchor(): any;
+        align(): string;
+        bubble_content(): readonly $mol_view_content[];
+        height_max(): number;
+        Bubble(): $mol_pop_bubble;
+    }
+    class $mol_pop_bubble extends $mol_view {
+        sub(): readonly $mol_view_content[];
+        style(): Record<string, any>;
+        attr(): Record<string, any>;
+        content(): readonly $mol_view_content[];
+        height_max(): number;
+        align(): string;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_pop extends $.$mol_pop {
+        showed(next?: boolean): boolean;
+        sub_visible(): any[];
+        height_max(): number;
+        align(): string;
+        align_vert(): "suspense" | "top" | "bottom";
+        align_hor(): "suspense" | "left" | "right";
+        View_port(): $mol_view;
+        view_port(): {
+            width: number;
+            height: number;
+            left: number;
+            right: number;
+            top: number;
+            bottom: number;
+        } | {
+            left: number;
+            top: number;
+            width: number;
+            height: number;
+        };
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_hotkey extends $mol_plugin {
+        event(): Record<string, any>;
+        key(): Record<string, any>;
+        mod_ctrl(): boolean;
+        mod_alt(): boolean;
+        mod_shift(): boolean;
+        keydown(event?: any): any;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_hotkey extends $.$mol_hotkey {
+        key(): {
+            [x: number]: ((event: KeyboardEvent) => void) | undefined;
+            readonly backspace?: ((event: KeyboardEvent) => void) | undefined;
+            readonly tab?: ((event: KeyboardEvent) => void) | undefined;
+            readonly enter?: ((event: KeyboardEvent) => void) | undefined;
+            readonly shift?: ((event: KeyboardEvent) => void) | undefined;
+            readonly ctrl?: ((event: KeyboardEvent) => void) | undefined;
+            readonly alt?: ((event: KeyboardEvent) => void) | undefined;
+            readonly pause?: ((event: KeyboardEvent) => void) | undefined;
+            readonly capsLock?: ((event: KeyboardEvent) => void) | undefined;
+            readonly escape?: ((event: KeyboardEvent) => void) | undefined;
+            readonly space?: ((event: KeyboardEvent) => void) | undefined;
+            readonly pageUp?: ((event: KeyboardEvent) => void) | undefined;
+            readonly pageDown?: ((event: KeyboardEvent) => void) | undefined;
+            readonly end?: ((event: KeyboardEvent) => void) | undefined;
+            readonly home?: ((event: KeyboardEvent) => void) | undefined;
+            readonly left?: ((event: KeyboardEvent) => void) | undefined;
+            readonly up?: ((event: KeyboardEvent) => void) | undefined;
+            readonly right?: ((event: KeyboardEvent) => void) | undefined;
+            readonly down?: ((event: KeyboardEvent) => void) | undefined;
+            readonly insert?: ((event: KeyboardEvent) => void) | undefined;
+            readonly delete?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key0?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key1?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key2?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key3?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key4?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key5?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key6?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key7?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key8?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key9?: ((event: KeyboardEvent) => void) | undefined;
+            readonly A?: ((event: KeyboardEvent) => void) | undefined;
+            readonly B?: ((event: KeyboardEvent) => void) | undefined;
+            readonly C?: ((event: KeyboardEvent) => void) | undefined;
+            readonly D?: ((event: KeyboardEvent) => void) | undefined;
+            readonly E?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F?: ((event: KeyboardEvent) => void) | undefined;
+            readonly G?: ((event: KeyboardEvent) => void) | undefined;
+            readonly H?: ((event: KeyboardEvent) => void) | undefined;
+            readonly I?: ((event: KeyboardEvent) => void) | undefined;
+            readonly J?: ((event: KeyboardEvent) => void) | undefined;
+            readonly K?: ((event: KeyboardEvent) => void) | undefined;
+            readonly L?: ((event: KeyboardEvent) => void) | undefined;
+            readonly M?: ((event: KeyboardEvent) => void) | undefined;
+            readonly N?: ((event: KeyboardEvent) => void) | undefined;
+            readonly O?: ((event: KeyboardEvent) => void) | undefined;
+            readonly P?: ((event: KeyboardEvent) => void) | undefined;
+            readonly Q?: ((event: KeyboardEvent) => void) | undefined;
+            readonly R?: ((event: KeyboardEvent) => void) | undefined;
+            readonly S?: ((event: KeyboardEvent) => void) | undefined;
+            readonly T?: ((event: KeyboardEvent) => void) | undefined;
+            readonly U?: ((event: KeyboardEvent) => void) | undefined;
+            readonly V?: ((event: KeyboardEvent) => void) | undefined;
+            readonly W?: ((event: KeyboardEvent) => void) | undefined;
+            readonly X?: ((event: KeyboardEvent) => void) | undefined;
+            readonly Y?: ((event: KeyboardEvent) => void) | undefined;
+            readonly Z?: ((event: KeyboardEvent) => void) | undefined;
+            readonly metaLeft?: ((event: KeyboardEvent) => void) | undefined;
+            readonly metaRight?: ((event: KeyboardEvent) => void) | undefined;
+            readonly select?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad0?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad1?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad2?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad3?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad4?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad5?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad6?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad7?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad8?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad9?: ((event: KeyboardEvent) => void) | undefined;
+            readonly multiply?: ((event: KeyboardEvent) => void) | undefined;
+            readonly add?: ((event: KeyboardEvent) => void) | undefined;
+            readonly subtract?: ((event: KeyboardEvent) => void) | undefined;
+            readonly decimal?: ((event: KeyboardEvent) => void) | undefined;
+            readonly divide?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F1?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F2?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F3?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F4?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F5?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F6?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F7?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F8?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F9?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F10?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F11?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F12?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numLock?: ((event: KeyboardEvent) => void) | undefined;
+            readonly scrollLock?: ((event: KeyboardEvent) => void) | undefined;
+            readonly semicolon?: ((event: KeyboardEvent) => void) | undefined;
+            readonly equals?: ((event: KeyboardEvent) => void) | undefined;
+            readonly comma?: ((event: KeyboardEvent) => void) | undefined;
+            readonly dash?: ((event: KeyboardEvent) => void) | undefined;
+            readonly period?: ((event: KeyboardEvent) => void) | undefined;
+            readonly forwardSlash?: ((event: KeyboardEvent) => void) | undefined;
+            readonly graveAccent?: ((event: KeyboardEvent) => void) | undefined;
+            readonly bracketOpen?: ((event: KeyboardEvent) => void) | undefined;
+            readonly slashBack?: ((event: KeyboardEvent) => void) | undefined;
+            readonly slashBackLeft?: ((event: KeyboardEvent) => void) | undefined;
+            readonly bracketClose?: ((event: KeyboardEvent) => void) | undefined;
+            readonly quoteSingle?: ((event: KeyboardEvent) => void) | undefined;
+        };
+        keydown(event?: KeyboardEvent): void;
+    }
+}
+
+declare namespace $ {
+    class $mol_nav extends $mol_plugin {
+        cycle(next?: any): boolean;
+        mod_ctrl(): boolean;
+        mod_shift(): boolean;
+        mod_alt(): boolean;
+        keys_x(next?: any): readonly any[];
+        keys_y(next?: any): readonly any[];
+        current_x(next?: any): any;
+        current_y(next?: any): any;
+        event_up(event?: any): any;
+        event_down(event?: any): any;
+        event_left(event?: any): any;
+        event_right(event?: any): any;
+        event(): Record<string, any>;
+        event_key(event?: any): any;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_nav extends $.$mol_nav {
+        event_key(event?: KeyboardEvent): undefined;
+        event_up(event?: KeyboardEvent): undefined;
+        event_down(event?: KeyboardEvent): undefined;
+        event_left(event?: KeyboardEvent): undefined;
+        event_right(event?: KeyboardEvent): undefined;
+        index_y(): number | null;
+        index_x(): number | null;
+    }
+}
+
+declare namespace $ {
+    class $mol_string extends $mol_view {
+        dom_name(): string;
+        enabled(): boolean;
+        minimal_height(): number;
+        autocomplete(): boolean;
+        selection(next?: any): readonly number[];
+        auto(): readonly any[];
+        field(): Record<string, any>;
+        attr(): Record<string, any>;
+        event(): Record<string, any>;
+        plugins(): readonly any[];
+        selection_watcher(): any;
+        disabled(): boolean;
+        value(next?: any): string;
+        value_changed(next?: any): string;
+        hint(): string;
+        hint_visible(): string;
+        spellcheck(): boolean;
+        autocomplete_native(): string;
+        selection_end(): number;
+        selection_start(): number;
+        keyboard(): string;
+        enter(): string;
+        length_max(): number;
+        type(next?: any): string;
+        event_change(event?: any): any;
+        submit_with_ctrl(): boolean;
+        submit(event?: any): any;
+        Submit(): $$.$mol_hotkey;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_string extends $.$mol_string {
+        event_change(next?: Event): void;
+        hint_visible(): string;
+        disabled(): boolean;
+        autocomplete_native(): "on" | "off";
+        selection_watcher(): $mol_dom_listener;
+        selection_change(event: Event): void;
+        selection_start(): number;
+        selection_end(): number;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_icon_cross extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_paragraph extends $mol_view {
+        line_height(): number;
+        letter_width(): number;
+        width_limit(): number;
+        row_width(): number;
+        sub(): readonly any[];
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_paragraph extends $.$mol_paragraph {
+        maximal_width(): number;
+        width_limit(): number;
+        minimal_width(): number;
+        row_width(): number;
+        minimal_height(): number;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_dimmer extends $mol_paragraph {
+        haystack(): string;
+        needle(): string;
+        sub(): readonly $mol_view_content[];
+        Low(id: any): $$.$mol_paragraph;
+        High(id: any): $$.$mol_paragraph;
+        parts(): readonly $mol_view_content[];
+        string(id: any): string;
+    }
+}
+
+declare namespace $ {
+    type $mol_type_equals<A, B> = (<X>() => X extends A ? 1 : 2) extends (<X>() => X extends B ? 1 : 2) ? unknown : never;
+}
+
+declare namespace $ {
+    type $mol_type_merge<Intersection> = Intersection extends (...a: any[]) => any ? Intersection : Intersection extends new (...a: any[]) => any ? Intersection : Intersection extends object ? $mol_type_merge_object<Intersection> extends Intersection ? unknown extends $mol_type_equals<$mol_type_merge_object<Intersection>, Intersection> ? Intersection : {
+        [Key in keyof Intersection]: $mol_type_merge<Intersection[Key]>;
+    } : Intersection : Intersection;
+    type $mol_type_merge_object<Intersection> = {
+        [Key in keyof Intersection]: Intersection[Key];
+    };
+}
+
+declare namespace $ {
+    type $mol_type_intersect<Union> = (Union extends any ? (_: Union) => void : never) extends ((_: infer Intersection) => void) ? Intersection : never;
+}
+
+declare namespace $ {
+    type $mol_unicode_category = [$mol_unicode_category_binary] | ['General_Category', $mol_char_category_general] | ['Script', $mol_unicode_category_script] | ['Script_Extensions', $mol_unicode_category_script];
+    type $mol_unicode_category_binary = 'ASCII' | 'ASCII_Hex_Digit' | 'Alphabetic' | 'Any' | 'Assigned' | 'Bidi_Control' | 'Bidi_Mirrored' | 'Case_Ignorable' | 'Cased' | 'Changes_When_Casefolded' | 'Changes_When_Casemapped' | 'Changes_When_Lowercased' | 'Changes_When_NFKC_Casefolded' | 'Changes_When_Titlecased' | 'Changes_When_Uppercased' | 'Dash' | 'Default_Ignorable_Code_Point' | 'Deprecated' | 'Diacritic' | 'Emoji' | 'Emoji_Component' | 'Emoji_Modifier' | 'Emoji_Modifier_Base' | 'Emoji_Presentation' | 'Extended_Pictographic' | 'Extender' | 'Grapheme_Base' | 'Grapheme_Extend' | 'Hex_Digit' | 'IDS_Binary_Operator' | 'IDS_Trinary_Operator' | 'ID_Continue' | 'ID_Start' | 'Ideographic' | 'Join_Control' | 'Logical_Order_Exception' | 'Lowercase' | 'Math' | 'Noncharacter_Code_Point' | 'Pattern_Syntax' | 'Pattern_White_Space' | 'Quotation_Mark' | 'Radical' | 'Regional_Indicator' | 'Sentence_Terminal' | 'Soft_Dotted' | 'Terminal_Punctuation' | 'Unified_Ideograph' | 'Uppercase' | 'Variation_Selector' | 'White_Space' | 'XID_Continue' | 'XID_Start';
+    type $mol_char_category_general = 'Cased_Letter' | 'Close_Punctuation' | 'Connector_Punctuation' | 'Control' | 'Currency_Symbol' | 'Dash_Punctuation' | 'Decimal_Number' | 'Enclosing_Mark' | 'Final_Punctuation' | 'Format' | 'Initial_Punctuation' | 'Letter' | 'Letter_Number' | 'Line_Separator' | 'Lowercase_Letter' | 'Mark' | 'Math_Symbol' | 'Modifier_Letter' | 'Modifier_Symbol' | 'Nonspacing_Mark' | 'Number' | 'Open_Punctuation' | 'Other' | 'Other_Letter' | 'Other_Number' | 'Other_Punctuation' | 'Other_Symbol' | 'Paragraph_Separator' | 'Private_Use' | 'Punctuation' | 'Separator' | 'Space_Separator' | 'Spacing_Mark' | 'Surrogate' | 'Symbol' | 'Titlecase_Letter' | 'Unassigned' | 'Uppercase_Letter';
+    type $mol_unicode_category_script = 'Adlam' | 'Ahom' | 'Anatolian_Hieroglyphs' | 'Arabic' | 'Armenian' | 'Avestan' | 'Balinese' | 'Bamum' | 'Bassa_Vah' | 'Batak' | 'Bengali' | 'Bhaiksuki' | 'Bopomofo' | 'Brahmi' | 'Braille' | 'Buginese' | 'Buhid' | 'Canadian_Aboriginal' | 'Carian' | 'Caucasian_Albanian' | 'Chakma' | 'Cham' | 'Chorasmian' | 'Cherokee' | 'Common' | 'Coptic' | 'Cuneiform' | 'Cypriot' | 'Cyrillic' | 'Deseret' | 'Devanagari' | 'Dives_Akuru' | 'Dogra' | 'Duployan' | 'Egyptian_Hieroglyphs' | 'Elbasan' | 'Elymaic' | 'Ethiopic' | 'Georgian' | 'Glagolitic' | 'Gothic' | 'Grantha' | 'Greek' | 'Gujarati' | 'Gunjala_Gondi' | 'Gurmukhi' | 'Han' | 'Hangul' | 'Hanifi_Rohingya' | 'Hanunoo' | 'Hatran' | 'Hebrew' | 'Hiragana' | 'Imperial_Aramaic' | 'Inherited' | 'Inscriptional_Pahlavi' | 'Inscriptional_Parthian' | 'Javanese' | 'Kaithi' | 'Kannada' | 'Katakana' | 'Kayah_Li' | 'Kharoshthi' | 'Khitan_Small_Script' | 'Khmer' | 'Khojki' | 'Khudawadi' | 'Lao' | 'Latin' | 'Lepcha' | 'Limbu' | 'Linear_A' | 'Linear_B' | 'Lisu' | 'Lycian' | 'Lydian' | 'Mahajani' | 'Makasar' | 'Malayalam' | 'Mandaic' | 'Manichaean' | 'Marchen' | 'Medefaidrin' | 'Masaram_Gondi' | 'Meetei_Mayek' | 'Mende_Kikakui' | 'Meroitic_Cursive' | 'Meroitic_Hieroglyphs' | 'Miao' | 'Modi' | 'Mongolian' | 'Mro' | 'Multani' | 'Myanmar' | 'Nabataean' | 'Nandinagari' | 'New_Tai_Lue' | 'Newa' | 'Nko' | 'Nushu' | 'Nyiakeng_Puachue_Hmong' | 'Ogham' | 'Ol_Chiki' | 'Old_Hungarian' | 'Old_Italic' | 'Old_North_Arabian' | 'Old_Permic' | 'Old_Persian' | 'Old_Sogdian' | 'Old_South_Arabian' | 'Old_Turkic' | 'Oriya' | 'Osage' | 'Osmanya' | 'Pahawh_Hmong' | 'Palmyrene' | 'Pau_Cin_Hau' | 'Phags_Pa' | 'Phoenician' | 'Psalter_Pahlavi' | 'Rejang' | 'Runic' | 'Samaritan' | 'Saurashtra' | 'Sharada' | 'Shavian' | 'Siddham' | 'SignWriting' | 'Sinhala' | 'Sogdian' | 'Sora_Sompeng' | 'Soyombo' | 'Sundanese' | 'Syloti_Nagri' | 'Syriac' | 'Tagalog' | 'Tagbanwa' | 'Tai_Le' | 'Tai_Tham' | 'Tai_Viet' | 'Takri' | 'Tamil' | 'Tangut' | 'Telugu' | 'Thaana' | 'Thai' | 'Tibetan' | 'Tifinagh' | 'Tirhuta' | 'Ugaritic' | 'Vai' | 'Wancho' | 'Warang_Citi' | 'Yezidi' | 'Yi' | 'Zanabazar_Square';
+}
+
+interface String {
+    match<RE extends RegExp>(regexp: RE): ReturnType<RE[typeof Symbol.match]>;
+    matchAll<RE extends RegExp>(regexp: RE): ReturnType<RE[typeof Symbol.matchAll]>;
+}
+declare namespace $ {
+    type Groups_to_params<T> = {
+        [P in keyof T]?: T[P] | boolean | undefined;
+    };
+    export type $mol_regexp_source = number | string | RegExp | {
+        [key in string]: $mol_regexp_source;
+    } | readonly [$mol_regexp_source, ...$mol_regexp_source[]];
+    export type $mol_regexp_groups<Source extends $mol_regexp_source> = Source extends number ? {} : Source extends string ? {} : Source extends $mol_regexp_source[] ? $mol_type_merge<$mol_type_intersect<{
+        [key in Extract<keyof Source, number>]: $mol_regexp_groups<Source[key]>;
+    }[Extract<keyof Source, number>]>> : Source extends RegExp ? Record<string, string> extends NonNullable<NonNullable<ReturnType<Source['exec']>>['groups']> ? {} : NonNullable<NonNullable<ReturnType<Source['exec']>>['groups']> : Source extends {
+        readonly [key in string]: $mol_regexp_source;
+    } ? $mol_type_merge<$mol_type_intersect<{
+        [key in keyof Source]: $mol_type_merge<$mol_type_override<{
+            readonly [k in Extract<keyof Source, string>]: string;
+        }, {
+            readonly [k in key]: Source[key] extends string ? Source[key] : string;
+        }> & $mol_regexp_groups<Source[key]>>;
+    }[keyof Source]>> : never;
+    export class $mol_regexp<Groups extends Record<string, string>> extends RegExp {
+        readonly groups: (Extract<keyof Groups, string>)[];
+        constructor(source: string, flags?: string, groups?: (Extract<keyof Groups, string>)[]);
+        [Symbol.matchAll](str: string): IterableIterator<RegExpMatchArray & $mol_type_override<RegExpMatchArray, {
+            groups?: {
+                [key in keyof Groups]: string;
+            };
+        }>>;
+        [Symbol.match](str: string): null | RegExpMatchArray;
+        [Symbol.split](str: string): string[];
+        test(str: string): boolean;
+        exec(str: string): RegExpExecArray & $mol_type_override<RegExpExecArray, {
+            groups?: {
+                [key in keyof Groups]: string;
+            };
+        }> | null;
+        generate(params: Groups_to_params<Groups>): string | null;
+        get native(): RegExp;
+        static repeat<Source extends $mol_regexp_source>(source: Source, min?: number, max?: number): $mol_regexp<$mol_regexp_groups<Source>>;
+        static repeat_greedy<Source extends $mol_regexp_source>(source: Source, min?: number, max?: number): $mol_regexp<$mol_regexp_groups<Source>>;
+        static vary<Sources extends readonly $mol_regexp_source[]>(sources: Sources): $mol_regexp<$mol_regexp_groups<Sources[number]>>;
+        static optional<Source extends $mol_regexp_source>(source: Source): $mol_regexp<$mol_regexp_groups<Source>>;
+        static force_after(source: $mol_regexp_source): $mol_regexp<Record<string, string>>;
+        static forbid_after(source: $mol_regexp_source): $mol_regexp<Record<string, string>>;
+        static from<Source extends $mol_regexp_source>(source: Source, { ignoreCase, multiline }?: Partial<Pick<RegExp, 'ignoreCase' | 'multiline'>>): $mol_regexp<$mol_regexp_groups<Source>>;
+        static unicode_only(...category: $mol_unicode_category): $mol_regexp<Record<string, string>>;
+        static unicode_except(...category: $mol_unicode_category): $mol_regexp<Record<string, string>>;
+        static char_range(from: number, to: number): $mol_regexp<{}>;
+        static char_only(...allowed: readonly [$mol_regexp_source, ...$mol_regexp_source[]]): $mol_regexp<{}>;
+        static char_except(...forbidden: readonly [$mol_regexp_source, ...$mol_regexp_source[]]): $mol_regexp<{}>;
+        static decimal_only: $mol_regexp<{}>;
+        static decimal_except: $mol_regexp<{}>;
+        static latin_only: $mol_regexp<{}>;
+        static latin_except: $mol_regexp<{}>;
+        static space_only: $mol_regexp<{}>;
+        static space_except: $mol_regexp<{}>;
+        static word_break_only: $mol_regexp<{}>;
+        static word_break_except: $mol_regexp<{}>;
+        static tab: $mol_regexp<{}>;
+        static slash_back: $mol_regexp<{}>;
+        static nul: $mol_regexp<{}>;
+        static char_any: $mol_regexp<{}>;
+        static begin: $mol_regexp<{}>;
+        static end: $mol_regexp<{}>;
+        static or: $mol_regexp<{}>;
+        static line_end: $mol_regexp<{
+            readonly win_end: string;
+            readonly mac_end: string;
+        }>;
+    }
+    export {};
+}
+
+declare namespace $.$$ {
+    class $mol_dimmer extends $.$mol_dimmer {
+        parts(): any[];
+        strings(): string[];
+        string(index: number): string;
+        view_find(check: (path: $mol_view, text?: string) => boolean, path?: $mol_view[]): Generator<$mol_view[]>;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_search extends $mol_pop {
+        query(next?: any): string;
+        suggests(): readonly string[];
+        plugins(): readonly $mol_plugin[];
+        showed(next?: any): boolean;
+        align_hor(): string;
+        Anchor(): $mol_view;
+        bubble_content(): readonly $mol_view_content[];
+        Suggest(id: any): $mol_button_minor;
+        clear(next?: any): any;
+        Hotkey(): $$.$mol_hotkey;
+        nav_components(): readonly $mol_view[];
+        nav_focused(component?: any): any;
+        Nav(): $$.$mol_nav;
+        suggests_showed(next?: any): boolean;
+        hint(): string;
+        submit(event?: any): any;
+        enabled(): boolean;
+        keyboard(): string;
+        enter(): string;
+        bring(): void;
+        Query(): $$.$mol_string;
+        Clear_icon(): $mol_icon_cross;
+        Clear(): $mol_button_minor;
+        anchor_content(): readonly any[];
+        menu_items(): readonly $mol_view[];
+        Menu(): $$.$mol_list;
+        suggest_select(id: any, event?: any): any;
+        suggest_label(id: any): string;
+        Suggest_label(id: any): $$.$mol_dimmer;
+        suggest_content(id: any): readonly $mol_view_content[];
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_search extends $.$mol_search {
+        anchor_content(): ($mol_button_minor | $mol_string)[];
+        suggests_showed(next?: boolean): boolean;
+        suggest_selected(next?: string): void;
+        nav_components(): ($mol_button_minor | $mol_string)[];
+        nav_focused(component?: $mol_view): $mol_view | $mol_button_minor | $mol_string | null;
+        suggest_label(key: string): string;
+        menu_items(): $mol_button_minor[];
+        suggest_select(id: string, event?: MouseEvent): void;
+        clear(event?: Event): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_stack extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_text_code_token extends $mol_dimmer {
+        attr(): Record<string, any>;
+        type(): string;
+    }
+    class $mol_text_code_token_link extends $mol_text_code_token {
+        dom_name(): string;
+        type(): string;
+        attr(): Record<string, any>;
+        uri(): string;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+    class $mol_text_code_row extends $mol_paragraph {
+        text(): string;
+        minimal_height(): number;
+        numb_showed(): boolean;
+        syntax(): any;
+        uri_resolve(id: any): string;
+        Numb(): $mol_view;
+        Token(id: any): $mol_text_code_token;
+        Token_link(id: any): $mol_text_code_token_link;
+        find_pos(id: any): any;
+        numb(): number;
+        token_type(id: any): string;
+        token_text(id: any): string;
+        highlight(): string;
+        token_uri(id: any): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_syntax2<Lexems extends {
+        [name: string]: RegExp;
+    }> {
+        lexems: Lexems;
+        constructor(lexems: Lexems);
+        rules: {
+            regExp: RegExp;
+            name: string;
+            size: number;
+        }[];
+        regexp: RegExp;
+        tokenize(text: string, handle: (name: string, found: string, chunks: string[], offset: number) => void): void;
+        parse(text: string, handlers: {
+            [key in keyof Lexems | '']: (found: string, chunks: string[], offset: number) => void;
+        }): void;
+    }
+}
+
+declare namespace $ {
+    var $mol_syntax2_md_flow: $mol_syntax2<{
+        quote: RegExp;
+        header: RegExp;
+        list: RegExp;
+        code: RegExp;
+        'code-indent': RegExp;
+        table: RegExp;
+        grid: RegExp;
+        cut: RegExp;
+        block: RegExp;
+    }>;
+    var $mol_syntax2_md_line: $mol_syntax2<{
+        strong: RegExp;
+        emphasis: RegExp;
+        code: RegExp;
+        insert: RegExp;
+        delete: RegExp;
+        embed: RegExp;
+        link: RegExp;
+        'image-link': RegExp;
+        'text-link': RegExp;
+        'text-link-http': RegExp;
+    }>;
+    const $mol_syntax2_md_code: $mol_syntax2<{
+        'code-indent': RegExp;
+        'code-docs': RegExp;
+        'code-comment-block': RegExp;
+        'code-link': RegExp;
+        'code-comment-inline': RegExp;
+        'code-string': RegExp;
+        'code-number': RegExp;
+        'code-call': RegExp;
+        'code-sexpr': RegExp;
+        'code-field': RegExp;
+        'code-keyword': RegExp;
+        'code-global': RegExp;
+        'code-word': RegExp;
+        'code-decorator': RegExp;
+        'code-tag': RegExp;
+        'code-punctuation': RegExp;
+    }>;
+}
+
+declare namespace $.$$ {
+    class $mol_text_code_row extends $.$mol_text_code_row {
+        maximal_width(): number;
+        syntax(): $mol_syntax2<{
+            'code-indent': RegExp;
+            'code-docs': RegExp;
+            'code-comment-block': RegExp;
+            'code-link': RegExp;
+            'code-comment-inline': RegExp;
+            'code-string': RegExp;
+            'code-number': RegExp;
+            'code-call': RegExp;
+            'code-sexpr': RegExp;
+            'code-field': RegExp;
+            'code-keyword': RegExp;
+            'code-global': RegExp;
+            'code-word': RegExp;
+            'code-decorator': RegExp;
+            'code-tag': RegExp;
+            'code-punctuation': RegExp;
+        }>;
+        tokens(path: number[]): readonly {
+            name: string;
+            found: string;
+            chunks: string[];
+        }[];
+        sub(): $mol_view[];
+        row_content(path: number[]): $mol_text_code_token[];
+        Token(path: number[]): $mol_text_code_token;
+        token_type(path: number[]): string;
+        token_content(path: number[]): (string | $mol_text_code_token)[];
+        token_text(path: number[]): string;
+        token_uri(path: number[]): string;
+        view_find(check: (path: $mol_view, text?: string) => boolean, path?: $mol_view[]): Generator<$mol_view[]>;
+        find_pos(offset: number): {
+            token: $mol_text_code_token;
+            offset: number;
+        } | null;
+        find_token_pos([offset, ...path]: number[]): {
+            token: $mol_text_code_token;
+            offset: number;
+        } | null;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
     type $mol_blob = Blob;
     let $mol_blob: {
         new (blobParts?: readonly BlobPart[], options?: BlobPropertyBag): Blob;
@@ -1994,36 +2357,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_check extends $mol_button_minor {
-        attr(): Record<string, any>;
-        sub(): readonly $mol_view_content[];
-        checked(next?: any): boolean;
-        aria_checked(): string;
-        aria_role(): string;
-        Icon(): any;
-        title(): string;
-        Title(): $mol_view;
-        label(): readonly any[];
-    }
-}
-
-declare namespace $ {
-    function $mol_maybe<Value>(value: Value | null | undefined): Value[];
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-    class $mol_check extends $.$mol_check {
-        click(next?: Event): void;
-        sub(): readonly $mol_view_content[];
-        label(): readonly any[];
-        aria_checked(): string;
-    }
-}
-
-declare namespace $ {
     class $mol_icon_chevron extends $mol_icon {
         path(): string;
     }
@@ -2125,7 +2458,7 @@ declare namespace $.$$ {
         col_head_content(colId: string): readonly string[];
         rows(): readonly $mol_view[];
         cells(row_id: string[]): readonly $mol_view[];
-        col_type(col_id: string): "number" | "text" | "branch";
+        col_type(col_id: string): "text" | "number" | "branch";
         Cell(id: {
             row: string[];
             col: string;
@@ -2539,6 +2872,11 @@ declare namespace $ {
 declare namespace $ {
     class $lit_app_item extends $mol_list {
         rows(): readonly any[];
+        empty_needed(next?: any): boolean;
+        Toggle_empty(): $mol_check_box;
+        search(next?: any): any;
+        Item_filter(): $$.$mol_search;
+        Filter_row(): $mol_row;
         author_name(id: any): string;
         author_stat(id: any): string;
         author_link(id: any): string;
@@ -2645,8 +2983,8 @@ declare namespace $.$$ {
                 description: string;
                 series: string;
                 items: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -2659,15 +2997,15 @@ declare namespace $.$$ {
 
 declare namespace $ {
     const $lit_app_item_type_Item: ((val: {
-        link: string;
         type: string;
+        link: string;
         name: string;
         id: string;
         description: string;
         chapter: string;
     }) => Readonly<{
-        link: string;
         type: string;
+        link: string;
         name: string;
         id: string;
         description: string;
@@ -2682,8 +3020,8 @@ declare namespace $ {
             link: (val: string) => string;
         };
         Value: Readonly<{
-            link: string;
             type: string;
+            link: string;
             name: string;
             id: string;
             description: string;
@@ -2697,8 +3035,8 @@ declare namespace $ {
         description: string;
         series: string;
         items: readonly {
-            link: string;
             type: string;
+            link: string;
             name: string;
             id: string;
             description: string;
@@ -2711,8 +3049,8 @@ declare namespace $ {
         description: string;
         series: string;
         items: readonly Readonly<{
-            link: string;
             type: string;
+            link: string;
             name: string;
             id: string;
             description: string;
@@ -2726,30 +3064,30 @@ declare namespace $ {
             link: (val: string) => string;
             series: (val: string) => string;
             items: ((val: readonly {
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
                 chapter: string;
             }[]) => readonly Readonly<{
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
                 chapter: string;
             }>[]) & {
                 config: ((val: {
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
                     chapter: string;
                 }) => Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -2764,8 +3102,8 @@ declare namespace $ {
                         link: (val: string) => string;
                     };
                     Value: Readonly<{
-                        link: string;
                         type: string;
+                        link: string;
                         name: string;
                         id: string;
                         description: string;
@@ -2773,8 +3111,8 @@ declare namespace $ {
                     }>;
                 };
                 Value: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -2789,8 +3127,8 @@ declare namespace $ {
             description: string;
             series: string;
             items: readonly Readonly<{
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
@@ -2810,8 +3148,8 @@ declare namespace $ {
             description: string;
             series: string;
             items: readonly {
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
@@ -2830,8 +3168,8 @@ declare namespace $ {
             description: string;
             series: string;
             items: readonly Readonly<{
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
@@ -2851,8 +3189,8 @@ declare namespace $ {
                 description: string;
                 series: string;
                 items: readonly {
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -2865,8 +3203,8 @@ declare namespace $ {
                 description: string;
                 series: string;
                 items: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -2880,8 +3218,8 @@ declare namespace $ {
                     description: string;
                     series: string;
                     items: readonly {
-                        link: string;
                         type: string;
+                        link: string;
                         name: string;
                         id: string;
                         description: string;
@@ -2894,8 +3232,8 @@ declare namespace $ {
                     description: string;
                     series: string;
                     items: readonly Readonly<{
-                        link: string;
                         type: string;
+                        link: string;
                         name: string;
                         id: string;
                         description: string;
@@ -2909,30 +3247,30 @@ declare namespace $ {
                         link: (val: string) => string;
                         series: (val: string) => string;
                         items: ((val: readonly {
-                            link: string;
                             type: string;
+                            link: string;
                             name: string;
                             id: string;
                             description: string;
                             chapter: string;
                         }[]) => readonly Readonly<{
-                            link: string;
                             type: string;
+                            link: string;
                             name: string;
                             id: string;
                             description: string;
                             chapter: string;
                         }>[]) & {
                             config: ((val: {
-                                link: string;
                                 type: string;
+                                link: string;
                                 name: string;
                                 id: string;
                                 description: string;
                                 chapter: string;
                             }) => Readonly<{
-                                link: string;
                                 type: string;
+                                link: string;
                                 name: string;
                                 id: string;
                                 description: string;
@@ -2947,8 +3285,8 @@ declare namespace $ {
                                     link: (val: string) => string;
                                 };
                                 Value: Readonly<{
-                                    link: string;
                                     type: string;
+                                    link: string;
                                     name: string;
                                     id: string;
                                     description: string;
@@ -2956,8 +3294,8 @@ declare namespace $ {
                                 }>;
                             };
                             Value: readonly Readonly<{
-                                link: string;
                                 type: string;
+                                link: string;
                                 name: string;
                                 id: string;
                                 description: string;
@@ -2972,8 +3310,8 @@ declare namespace $ {
                         description: string;
                         series: string;
                         items: readonly Readonly<{
-                            link: string;
                             type: string;
+                            link: string;
                             name: string;
                             id: string;
                             description: string;
@@ -2988,8 +3326,8 @@ declare namespace $ {
                     description: string;
                     series: string;
                     items: readonly Readonly<{
-                        link: string;
                         type: string;
+                        link: string;
                         name: string;
                         id: string;
                         description: string;
@@ -3010,8 +3348,8 @@ declare namespace $ {
                 description: string;
                 series: string;
                 items: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -3032,8 +3370,8 @@ declare namespace $ {
             description: string;
             series: string;
             items: readonly {
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
@@ -3052,8 +3390,8 @@ declare namespace $ {
             description: string;
             series: string;
             items: readonly Readonly<{
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
@@ -3073,8 +3411,8 @@ declare namespace $ {
                 description: string;
                 series: string;
                 items: readonly {
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -3093,8 +3431,8 @@ declare namespace $ {
                 description: string;
                 series: string;
                 items: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -3114,8 +3452,8 @@ declare namespace $ {
                     description: string;
                     series: string;
                     items: readonly {
-                        link: string;
                         type: string;
+                        link: string;
                         name: string;
                         id: string;
                         description: string;
@@ -3128,8 +3466,8 @@ declare namespace $ {
                     description: string;
                     series: string;
                     items: readonly Readonly<{
-                        link: string;
                         type: string;
+                        link: string;
                         name: string;
                         id: string;
                         description: string;
@@ -3143,8 +3481,8 @@ declare namespace $ {
                         description: string;
                         series: string;
                         items: readonly {
-                            link: string;
                             type: string;
+                            link: string;
                             name: string;
                             id: string;
                             description: string;
@@ -3157,8 +3495,8 @@ declare namespace $ {
                         description: string;
                         series: string;
                         items: readonly Readonly<{
-                            link: string;
                             type: string;
+                            link: string;
                             name: string;
                             id: string;
                             description: string;
@@ -3172,30 +3510,30 @@ declare namespace $ {
                             link: (val: string) => string;
                             series: (val: string) => string;
                             items: ((val: readonly {
-                                link: string;
                                 type: string;
+                                link: string;
                                 name: string;
                                 id: string;
                                 description: string;
                                 chapter: string;
                             }[]) => readonly Readonly<{
-                                link: string;
                                 type: string;
+                                link: string;
                                 name: string;
                                 id: string;
                                 description: string;
                                 chapter: string;
                             }>[]) & {
                                 config: ((val: {
-                                    link: string;
                                     type: string;
+                                    link: string;
                                     name: string;
                                     id: string;
                                     description: string;
                                     chapter: string;
                                 }) => Readonly<{
-                                    link: string;
                                     type: string;
+                                    link: string;
                                     name: string;
                                     id: string;
                                     description: string;
@@ -3210,8 +3548,8 @@ declare namespace $ {
                                         link: (val: string) => string;
                                     };
                                     Value: Readonly<{
-                                        link: string;
                                         type: string;
+                                        link: string;
                                         name: string;
                                         id: string;
                                         description: string;
@@ -3219,8 +3557,8 @@ declare namespace $ {
                                     }>;
                                 };
                                 Value: readonly Readonly<{
-                                    link: string;
                                     type: string;
+                                    link: string;
                                     name: string;
                                     id: string;
                                     description: string;
@@ -3235,8 +3573,8 @@ declare namespace $ {
                             description: string;
                             series: string;
                             items: readonly Readonly<{
-                                link: string;
                                 type: string;
+                                link: string;
                                 name: string;
                                 id: string;
                                 description: string;
@@ -3251,8 +3589,8 @@ declare namespace $ {
                         description: string;
                         series: string;
                         items: readonly Readonly<{
-                            link: string;
                             type: string;
+                            link: string;
                             name: string;
                             id: string;
                             description: string;
@@ -3273,8 +3611,8 @@ declare namespace $ {
                     description: string;
                     series: string;
                     items: readonly Readonly<{
-                        link: string;
                         type: string;
+                        link: string;
                         name: string;
                         id: string;
                         description: string;
@@ -3295,8 +3633,8 @@ declare namespace $ {
                 description: string;
                 series: string;
                 items: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -3308,7 +3646,7 @@ declare namespace $ {
 }
 declare namespace $.$$ {
     class $lit_app_item extends $.$lit_app_item {
-        authors_data(): readonly Readonly<{
+        authors_data_fetch(): readonly Readonly<{
             link: string;
             name: string;
             id: string;
@@ -3320,8 +3658,29 @@ declare namespace $.$$ {
                 description: string;
                 series: string;
                 items: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
+                    name: string;
+                    id: string;
+                    description: string;
+                    chapter: string;
+                }>[];
+            }>[];
+        }>[];
+        authors_data(): Readonly<{
+            link: string;
+            name: string;
+            id: string;
+            description: string;
+            books: readonly Readonly<{
+                link: string;
+                name: string;
+                id: string;
+                description: string;
+                series: string;
+                items: readonly Readonly<{
+                    type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -3342,8 +3701,8 @@ declare namespace $.$$ {
                 description: string;
                 series: string;
                 items: readonly Readonly<{
-                    link: string;
                     type: string;
+                    link: string;
                     name: string;
                     id: string;
                     description: string;
@@ -3362,8 +3721,8 @@ declare namespace $.$$ {
             description: string;
             series: string;
             items: readonly Readonly<{
-                link: string;
                 type: string;
+                link: string;
                 name: string;
                 id: string;
                 description: string;
@@ -3375,8 +3734,8 @@ declare namespace $.$$ {
         book_link(id: any): string;
         items_list(id: any): readonly any[];
         get_item(id: string): Readonly<{
-            link: string;
             type: string;
+            link: string;
             name: string;
             id: string;
             description: string;
