@@ -53,11 +53,11 @@ namespace $.$$ {
 								},
 								{
 									id: 'i_1_1_2',
-									name: "владение копьём",
-									description: 'описание',
+									name: "Стрельба из лука",
+									description: 'Стрельба из лука\nРанг: F.\nТип: навык.\nУровень: 1/5.\nОписание:\n— Навык стрельбы из лука, взятый у одного из гоблинских племен.\nНасыщение:\n0/10 ОС',
 									type: 'skill',
-									chapter: '1',
-									chapter_link: 'https://author.today/reader/17501/622184'
+									chapter: '3',
+									chapter_link: 'https://author.today/reader/17501/622188'
 								},
 							]
 						}, {
