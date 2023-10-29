@@ -43,7 +43,7 @@ namespace $.$$ {
 						if( this.search() ) {
 							return item.description?.toLocaleLowerCase().includes( this.search().toLocaleLowerCase() )
 						}
-						if ( this.type() ) {
+						if( this.type() ) {
 							return item.type === this.type()
 						}
 						return true
@@ -51,7 +51,7 @@ namespace $.$$ {
 				} ) )
 			} ) )
 
-			return author_filtered
+			return author_filtered.filter( author => author.books.filter( books => books.items.length > 0 ).length > 0 )
 		}
 
 		author_list(): readonly any[] {
