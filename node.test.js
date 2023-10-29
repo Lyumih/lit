@@ -10177,7 +10177,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("lit/app/item/item.view.css", "[lit_app_item_author], [lit_app_item_book], [lit_app_item_item] {\n\tborder: 2px solid grey;\n\tborder-radius: 2rem;\n\tpadding: 1rem;\n}\n");
+    $mol_style_attach("lit/app/item/item.view.css", "[mol_expander_content] {\n\tpadding-left: 2.25rem;\n\tdisplay: block;\n}\n\n[mol_expander_content] [mol_expander_content] {\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line);\n\tbackground: hsla( 0deg , 0% , 50% , .05 );\n}\n");
 })($ || ($ = {}));
 //lit/app/item/-css/item.view.css.ts
 ;
