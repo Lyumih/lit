@@ -10389,7 +10389,7 @@ var $;
                         })
                     }))
                 }));
-                return author_filtered;
+                return author_filtered.filter(author => author.books.filter(books => books.items.length > 0).length > 0);
             }
             author_list() {
                 return this.authors_data().map(author => this.Author(author.id));
